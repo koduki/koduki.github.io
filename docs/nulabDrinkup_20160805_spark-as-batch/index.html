@@ -58,8 +58,8 @@ Batch FrameworkとしてのApache Spark
 
 <img src="twitter.png"></img>
 - [@koduki](https://twitter.com/koduki)
-- 天神あたりで働くJavaが好きなエンジニア。
-- でもRubyの方がもーっと好きです。
+- 天神あたりで働くScalaやJavaが好きなエンジニア
+- でもRubyの方がもーっと好きです
 
 ---
 
@@ -84,36 +84,49 @@ Batch FrameworkとしてのApache Spark
 - - -
 
 - Apache Sparkによる機械学習
-- APache Sparkによるストリーム入門
+- Apache Sparkによるストリーム入門
 
 ---
 
 ## 今日話すこと
 - - -
 
-- Java8でApache Sparkでバッチをどう書くか？
+- Apache Sparkによる「ふつう」のバッチ開発
 
 ---
 
-## Javaとバッチフレームワーク
+## バッチフレームワークの分類
 - - -
 
-##### コンテナ型
+- プロセス型
+	- Spring Batch/Terasoluna
+	- 自作 or フレームワークなんて使わない！
+- コンテナ型
+	- JavaEE jBatch(JSR-352)
+	- Hadoop(MapReduce, Spark)
 
-- Java EE jBatch(JSR-352)
-- Hadoop(MapReduce, Spark)
+---
 
-##### プロセス型
+## プロセス型バッチのメリット
+- - - 
 
-- Spring Batch
-- 自作 or フレームワークなんて使わない！
+- シンプル
+- 既存ジョブ管理システム等との相性
+
+---
+
+## コンテナ型バッチのメリット
+- - - 
+
+- 分散環境
+- リソース管理
 
 ---
 
 ## Apache Sparkって何？
 - - -
 
-- Hadoopファミリの一つ。
+- Hadoopファミリの一つ
 - ポストHadoop MapReduce
 - 分散並列環境でのジョブ実行/ストリーム処理が得意
 - インメモリ処理が中心でMapReduceよりずっと高速
@@ -125,36 +138,54 @@ Batch FrameworkとしてのApache Spark
 
 ---
 
-## Java8で書くメリット
+## Javaで書くメリット
 - - -
 
-- Stream APIとの高い類似性 <- どっちもScala由来！
+- Java8のStream APIとの高い類似性 #どっちもScala由来！
 - 既存のJavaによるビジネスロジックを移植しやすい
 - Scalaを導入するより、上司や周りを説得しやすい
 
 ---
 
-## JavaによるSpark例
+## SparkによるWordCound
 - - -
 
-```[java]
-// Driver
-SparkConf sparkConf = new SparkConf()
-		.setMaster("local")
-		.setAppName("Example01");
-JavaSparkContext sc = new JavaSparkContext(sparkConf);
+- まずはSparkでHelloWorldに相当するWordCountを実装
 
-// ここからExecutor
-sc.parallelize(Arrays.asList(
-		new Tuple2<>("Nanoha", 19),
-		new Tuple2<>("Fate", 19),
-		new Tuple2<>("Vivio", 9)))
+```[scala]
+// Driver(シングルスレッド/単一マシンでの実行)
+val sparkConf = new SparkConf()
+		.setMaster("local")
+		.setAppName("wordCount");
+val sc = new SparkContext(sparkConf);
+// ここからExecutor(マルチスレッド/分散マシン上での実行になる)
+sc.parallelize(List(
+		("Nanoha", 19),
+		("Fate", 19),
+		("Vivio", 9)))
+	.filter(x -> x._2() < 10)
+	.map(x -> "Magical girl " + x._1())
+	.foreach(x -> println(x));
+// Driver(シングルスレッド/単一マシンでの実行)
+sc.stop();
+```
+
+---
+
+## ScalaによるWordCound
+- - -
+
+- ScalaによるWordCountを実装。ほとんど変わらない
+
+```[scala]
+// WordCount
+sc.parallelize(List(
+		("Nanoha", 19),
+		("Fate", 19),
+		("Vivio", 9)))
 		.filter(x -> x._2() < 10)
 		.map(x -> "Magical girl " + x._1())
-		.foreach(x -> System.out.println(x));
-
-// Driver
-sc.stop();
+		.foreach(x -> println(x));
 ```
 
 ---
@@ -162,9 +193,10 @@ sc.stop();
 ## Sparkの実行モデル
 - - -
 
-- 実はさっきのコードはマルチスレッドかつ分散環境で動いている
-- Javaの通常プロセスであるDriverと分散処理プロセスであるExecutorに分かれる
+- Spark側のコードはマルチスレッドかつ分散環境で動いている
+- コードは通常プロセスであるDriverと分散処理プロセスであるExecutorに分かれて実行される
 - ExecutorではRDDと呼ばれる分散並列コレクションに対して処理を行う
+- 実際の処理はExecutor内でさらにマルチスレッドで行われる
 
 ---
 
@@ -178,16 +210,49 @@ sc.stop();
 ## 変換とアクション
 - - -
 
-- SparkにはRDDを別のRDDに変換する「変換」と、RDDに対して処理を行う「アクション」がある
-
+- SparkにはRDDを別のRDDに変換する「変換(Transformation)」と、RDDに対して処理を行う「アクション(Action)」がある
 - mapやfilterといった「変換」はStreamAPI同様に遅延実行なので、foreachやreduce、countといった「アクション」が走るまで実際の処理はされない
+- 変換は再計算される可能性があるので、副作用のない実装にする必要がある
 
 ---
 
-## よくある業務処理１
+## どうやって実行するのか？
+
+- - -
+
+- Javaコマンドからも実行できるが、通常はspark-submitコマンドを使う
+- スケジューラにアプリケーションを配布して実行する
+- Driver/Executorの処理が終わるまで返ってこないので、Bashや既存ジョブマネとも連携できる
+
+```[bash]
+${SPARK_HOME}/bin/spark-submit \
+  --master <master-url> \
+  --class <main-class>
+  --name <name>
+  ... # other options
+  <application-jar> \
+  [application-arguments]
+```
+
+---
+
+# 業務処理の実装例
+
+---
+
+## 業務処理とSpark
+- - -
+
+- Webで見つかる事例としては機械学習やログ解析/データサイエンスが多い
+- ただ、サンプルを見たとおり、ほぼ普通のScalaなのでふつうの業務処理も書ける
+
+---
+
+## よくある業務処理１ - シンプルな集計
 - - -
 
 - 以下のようなフォーマットのファイルを読み込んで、地域別に集計をしたい
+- 業界によっては「コントロールブレイク」とかカッコイイ言い方するやつ
 
 <table>
 	<tr><th>地域</th><th>事業</th><th>人数</th></tr>
@@ -225,23 +290,37 @@ sc.stop();
 
 ---
 
-## よくある業務処理2
+## よくある業務処理2 - マッチング処理
 - - -
 
-- Sparkってファイル処理でしょ？  うちのデータRDB上にあるんだよねー
-- 大丈夫です。安心してください。SparkではDBにアクセスする方法があります
-	- DataFrame
-	- Sqoop
+- Joinをつかう
+
+---
+
+## よくある業務処理3 - 外部にリクエストを投げる
+- - -
+
+- 特に気にせず普通に投げることができる
+- ただし、受ける側に大量リクエストを投げることになるので注意
+
+---
+
+## よくある業務処理4 - データーベースの利用
+- - -
+
+- SparkはRDBのデータもDataFrameを使い簡単に処理できる
+- SparkのAPIだけではなく、SQLの利用も可能
+- RDBとJSONファイるをJOINする変態的なことも出来る
 
 ---
 
 ## DataFrame
 - - -
 
-- RDDでスキーマを設定できる高機能API
-- StreamAPIライクなメソッドはもちろんSQLでアクセスすることも可能
+- RDDをさらに抽象化した高レベルAPI. Spark2.0ではこちらが主流の見込み
+- 実行計画を取り最適化されるので、RDDよりも高速
+- SparkのAPIはもちろんSQLでアクセスすることも可能
 - 複数のデータソースをとれる(RDB, JSON, CSV...)
-- RDBとHDFS上のJSONファイルをJOINするとかもできる
 
 ---
 
@@ -265,6 +344,17 @@ df.select("age")
 
 ---
 
+## 実際に投げるSQL例
+- - -
+
+- 単純にクエリを分割することで各レコードへの並行処理を実現
+
+```sql
+
+```
+
+---
+
 ## DataFrameの苦手なこと
 - - -
 
@@ -279,66 +369,13 @@ df.select("age")
 
 <table>
 	<tr><td>map</td><td>普通のmap</td></tr>
-	<tr><td>mapToPair</td><td>PairRDDを返す</td></tr>
-	<tr><td>flatMap</td><td>mapの戻り値がListならflattenしたRDDを返す</td></tr>
+	<tr><td>flatMap</td><td>mapの戻り値をflattenしたRDDを返す</td></tr>
 	<tr><td>filter</td><td>任意の条件でフィルタしたRDDを返す</td></tr>
-	<tr><td>groupByKey</td><td>キーでまとめたRDDを返す</td></tr>
+	<tr><td>foldByKey</td><td>キー毎に畳み込み演算</td></tr>
 	<tr><td>sortByKey</td><td>キーでソート</td></tr>
 	<tr><td>zip</td><td>RDDをセットにしたRDDを返す</td></tr>
-	<tr><td>zipWithIndex</td><td>RDDをセットにしたRDDを返す</td></tr>
 	<tr><td>union</td><td>2つのRDDを結合したRDDを返す</td></tr>
 </table>
-
----
-
-## どうやって実行するのか？
-
-- - -
-
-- Javaコマンドからも実行できるが、通常はspark-submitコマンドを使う
-- スケジューラにアプリケーションを配布して実行する
-- Driver/Executorの処理が終わるまで返ってこないので、Bashや既存ジョブマネとも連携できる!
-
-```[bash]
-${SPARK_HOME}/bin/spark-submit \
-  --master <master-url> \
-  --class <main-class>
-  --name <name>
-  ... # other options
-  <application-jar> \
-  [application-arguments]
-```
-
----
-
-## なぜSparkか？
-- - -
-
-- 単に並列コレクション操作がしたいだけならStreamAPIで十分
-- Hadoopファミリを使う理由はなんだろう？
-
----
-## メリット１: 複数サーバに分散する
-- - -
-
-- 1台のマシンでは処理しきれないデータ量を取り扱える
-- 冗長性や性能のために自前でアクティブアクティブ構成を作るのは結構面倒
-
----
-
-## メリット2: バッチシステムとして作り込まれたツール群1
-
-付属のSpark WebUIで動いてる処理や実行時間が可視化されてる
-
-<img src="spark-web-ui.png"></img>
-
----
-
-## メリット2: バッチシステムとして作り込まれたツール群2
-
-Clodera Navigator使えばHDFS上でどんなファイルが、どのジョブで作られたかが分かる
-
-<img src="cloudera-navigator.png"></img>
 
 ---
 
@@ -346,19 +383,100 @@ Clodera Navigator使えばHDFS上でどんなファイルが、どのジョブ�
 - - -
 
 - マルチスレッドであることを意識する
-- 分散環境だることを意識する
+	- スレッドセーフじゃないフィールド値等を触らない
+- 分散環境であることを意識する
+	- インスタンスは初期化されているいかもしれない
 - 遅延実行であることを意識する
+	- 書いてある順番で実行されるとは限らない
+
+---
+
+# なぜSparkを使うのか？
+
+---
+
+## なぜSparkを使うのか？
+- - -
+
+- 単に並列コレクション操作がしたいだけならScala単独で可能
+- 巨大なメモリが欲しいなら2000万円くらい出して6TBくらいのサーバを買う手もある
+	- EC2で揃えても6TBだとr3を25台で月額500万円近くなので高すぎる値段ではない
+- ではSparkに何を期待するのか？
+
+---
+
+## Sparkを使うメリット
+- - -
+
+- 分散環境による冗長性とスケールアウト
+- 強力なモニタリング/レポート機能
+- Hadoopファミリとの連携
+
+---
+
+## メリット１: 分散環境による冗長性とスケールアウト
+- - -
+
+- 台数を増やすことで一時的に性能を上げれる
+	- 月末だけ処理が重いとか
+- １台が死んでもジョブ全体は死なない
+- Active/Actice構成を自作するのは結構面倒
+	- 上手に運用するための制約が必要になる
+
+---
+
+## メリット2: 強力なモニタリング/レポート機能1
+
+- 付属のSpark WebUIで動いてる処理や実行時間が可視化されてる
+
+<img src="spark-web-ui.png"></img>
+
+---
+
+## メリット2: 強力なモニタリング/レポート機能2
+
+- Cloudera Managerによりリソースのモニタリングも可能
+
+<img src="spark-web-ui.png"></img>
+
+---
+
+## メリット3： Hadoopファミリとの連携
+
+- HDFSとYARNにより他のHadoopファミリと統合/連携が容易
+- 特にCDHとClouderaManagerを使うことで導入と管理を一元化できる
+- HDFSを基盤とすることで複数のアプリケーション間でデータ転送がなくなる
+
+---
+
+## メリット3: その他便利そうなCDHツール群
+
+全部の検証はできてないけど、下記のツール当たりが有用そう
+
+<table>
+	<tr><th>名称</th><th>概要</th></tr>
+	<tr><td>Spark Streaming</td><td>ストリーム処理</td></tr>
+	<tr><td>Spark SQL</td><td>HDFS/RDDへのSQLアクセス. JDBCも可</td></tr>
+	<tr><td>Spark GraphX</td><td>neo4jのようなグラフ分析</td></tr>
+	<tr><td>Hue</td><td>HDFS上のデータ表示や管理/Oozieとの連携</td></tr>
+	<tr><td>Oozie</td><td>ワークフロースケジューラ. いわゆるジョブ管理ツール</td></tr>
+	<tr><td>Flume</td><td>ログ集約基盤</td></tr>
+	<tr><td>Sqoop</td><td>HDFSとRDBの間のデータのインポート/エクスポート</td></tr>
+</table>
+---
+
+# まとめ
 
 ---
 
 ## まとめ
 - - -
 
-- Apache Spark + Java8での開発は思ったより簡単。たぶん普通の業務バッチに使える
-- ただし、Scalaによる事例ばかりなので情報収集が少し大変
-- あと、Java8は型推論が無いのでTuple地獄でツラい
-- クラスタの運用はツラいとも聞くので本格運用したらまた違うかも
-        </script>
+- Apache Sparkによる普通の業務バッチは結構簡単に書けそう
+- 単なるプログラミングモデル以上に、エコシステムが出来ているので、運用面の強みが期待できる
+- ただし、クラスタの運用はツラいとも聞くので本格運用したらまた違うかも
+    　
+	　</script>
       </section>
 			</div>
 		</div>
