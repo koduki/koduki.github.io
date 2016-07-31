@@ -328,6 +328,13 @@ ${SPARK_HOME}/bin/spark-submit \
 - - -
 
 ```[java]
+String sql = "SELECT MIN(id) as min, MAX(id) as max FROM users";
+long min, max;
+try(Connection con = DriverManager.getConnection(url, user, password);Statement st = con.createStatement();ResultSet rs = st.executeQeury(sql)){
+	rs.next();
+	min = rs.getLong("min");
+	max = rs.getLong("max");
+}
 Map<String, String> options = new HashMap<>();
 options.put(url, "jdbc:mysql://localhost");
 options.put("dbtable", "users");
@@ -350,7 +357,7 @@ df.select("age")
 - 単純にクエリを分割することで各レコードへの並行処理を実現
 
 ```sql
-
+SELECT "KEY" ,,, FROM A_TABLE WHERE ID < 33333
 ```
 
 ---
