@@ -168,6 +168,14 @@ sc.parallelize(Array("ポッポ", "ポッポ", "ピカチュウ",
 sc.stop();
 ```
 
+結果
+
+```
+(ポッポ,4)
+(ラッタ,2)
+(ピカチュウ,1)
+```
+
 ---
 
 ## ScalaによるWordCound
@@ -175,7 +183,7 @@ sc.stop();
 
 - ScalaによるWordCountを実装。ほとんど変わらない
 
-```[scala]
+```scala
 // WordCount
 Array("ポッポ", "ポッポ", "ピカチュウ",
       "ポッポ", "ラッタ", "ポッポ", "ラッタ")
@@ -183,6 +191,14 @@ Array("ポッポ", "ポッポ", "ピカチュウ",
       .groupBy(x => x)
       .map(xs => (xs._1._1, xs._2.size))
       .foreach(println)
+```
+
+結果：
+
+```
+(ポッポ,4)
+(ラッタ,2)
+(ピカチュウ,1)
 ```
 
 ---
@@ -451,15 +467,15 @@ SELECT "KEY" ,,, FROM A_TABLE WHERE 990 < ID and ID <= 1000
 
 - 付属のSpark WebUIで動いてる処理や実行時間が可視化されてる
 
-<img src="spark-web-ui.png"></img>
+<img src="dag001.png"></img>
 
 ---
 
 ## メリット2: 強力なモニタリング/レポート機能2
 
-- Cloudera Managerによりリソースのモニタリングも可能
+- Cloudera Managerによりリソースのモニタリング
 
-<img src="spark-web-ui.png"></img>
+<img src="cm001.png"></img>
 
 ---
 
@@ -477,14 +493,14 @@ SELECT "KEY" ,,, FROM A_TABLE WHERE 990 < ID and ID <= 1000
 
 <table>
 	<tr><th>名称</th><th>概要</th></tr>
-	<tr><td>Spark Streaming</td><td>ストリーム処理</td></tr>
 	<tr><td>Spark SQL</td><td>HDFS/RDDへのSQLアクセス. JDBCも可</td></tr>
 	<tr><td>Spark GraphX</td><td>neo4jのようなグラフ分析</td></tr>
-	<tr><td>Hue</td><td>HDFS上のデータ表示や管理/Oozieとの連携</td></tr>
-	<tr><td>Oozie</td><td>ワークフロースケジューラ. いわゆるジョブ管理ツール</td></tr>
+	<tr><td>Hue</td><td>HDFS上のデータ表示や管理</td></tr>
+	<tr><td>Oozie</td><td>ワークフロースケジューラ.</td></tr>
 	<tr><td>Flume</td><td>ログ集約基盤</td></tr>
-	<tr><td>Sqoop</td><td>HDFSとRDBの間のデータのインポート/エクスポート</td></tr>
+	<tr><td>Sqoop</td><td>HDFSとRDBの間のデータの入出力</td></tr>
 </table>
+
 ---
 
 # まとめ
@@ -495,6 +511,7 @@ SELECT "KEY" ,,, FROM A_TABLE WHERE 990 < ID and ID <= 1000
 - - -
 
 - Apache Sparkによる普通の業務バッチは結構簡単に書けそう
+- Bash等から普通に実行できるので既存のジョブ管理システムとの連携もできる
 - 単なるプログラミングモデル以上に、エコシステムが出来ているので、運用面の強みが期待できる
 - ただし、クラスタの運用はツラいとも聞くので本格運用したらまた違うかも
     　
