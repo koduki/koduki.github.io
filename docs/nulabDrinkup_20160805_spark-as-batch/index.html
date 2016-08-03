@@ -152,20 +152,18 @@ Batch FrameworkとしてのApache Spark
 
 - まずはSparkでHelloWorldに相当するWordCountを実装
 
-```[scala]
+```scala
 // Driver(シングルスレッド/単一マシンでの実行)
-val sparkConf = new SparkConf()
-		.setMaster("local")
-		.setAppName("wordCount");
-val sc = new SparkContext(sparkConf);
+val conf = new SparkConf().setMaster("local[*]")
+						  .setAppName("Example01")
+val sc = new SparkContext(conf)
 // ここからExecutor(マルチスレッド/分散マシン上での実行になる)
-sc.parallelize(List(
-		("Nanoha", 19),
-		("Fate", 19),
-		("Vivio", 9)))
-	.filter(x -> x._2() < 10)
-	.map(x -> "Magical girl " + x._1())
-	.foreach(x -> println(x));
+sc.parallelize(Array("ポッポ", "ポッポ", "ピカチュウ",
+      "ポッポ", "ラッタ", "ポッポ", "ラッタ"))
+      .map(x => (x, 1))
+      .groupBy(x => x)
+      .map(xs => (xs._1._1, xs._2.size))
+      .foreach(println)
 // Driver(シングルスレッド/単一マシンでの実行)
 sc.stop();
 ```
@@ -179,13 +177,12 @@ sc.stop();
 
 ```[scala]
 // WordCount
-sc.parallelize(List(
-		("Nanoha", 19),
-		("Fate", 19),
-		("Vivio", 9)))
-		.filter(x -> x._2() < 10)
-		.map(x -> "Magical girl " + x._1())
-		.foreach(x -> println(x));
+Array("ポッポ", "ポッポ", "ピカチュウ",
+      "ポッポ", "ラッタ", "ポッポ", "ラッタ")
+      .map(x => (x, 1))
+      .groupBy(x => x)
+      .map(xs => (xs._1._1, xs._2.size))
+      .foreach(println)
 ```
 
 ---
@@ -264,22 +261,13 @@ ${SPARK_HOME}/bin/spark-submit \
 ---
 ## 地域別集計例
 
-```[java]
-        JavaRDD<Tuple3<String, String, Integer>> input = sc.textFile("item.csv")
-								.map(line -> line.split(","))
-								.map(xs -> new Tuple3<>(xs[0], xs[1], Integer.parseInt(xs[2])))
-
-        input.mapToPair(xs -> new Tuple2(xs._1(), xs))
-                .groupByKey()
-                .map(xs -> {
-                    // 型推論が何故かうまくいかない
-                    Tuple2<String, Iterable<Tuple3<String, String, Integer>>> item = (Tuple2<String, Iterable<Tuple3<String, String, Integer>>>) xs;
-                    Stream<Tuple3<String, String, Integer>> stream = StreamSupport.stream(item._2().spliterator(), true);
-                    int sum = stream.collect(Collectors.summingInt(x -> x._3()));
-
-                    return new Tuple2<>(item._1(), sum);
-                })
-                .foreach(x -> System.out.println(x));
+```scala
+sc.textFile("src/main/resources/test.csv")
+      .map(s => s.split(","))
+      .map(xs => (xs(0), xs(2).toInt))
+      .reduceByKey(_+_)
+      .foreach(println)
+sc.stop()
 ```
 
 結果:
@@ -293,23 +281,53 @@ ${SPARK_HOME}/bin/spark-submit \
 ## よくある業務処理2 - マッチング処理
 - - -
 
-- Joinをつかう
+- トランザクションにあるもの価格を集計
+
+商品マスタ(master.csv)
+<table>
+	<tr><th>名前</th><th>価格</th></tr>
+	<tr><td>ピカチュウ</td><td>1000</td></tr>
+	<tr><td>ポッポ</td><td>10</td></tr>
+	<tr><td>コラッタ</td><td>10</td></tr>
+</table>
+
+売上トランザクション(tran.csv)
+<table>
+	<tr><th>名前</th><th>場所</th></tr>
+	<tr><td>ピカチュウ</td><td>大濠公園</td></tr>
+</table>
 
 ---
 
-## よくある業務処理3 - 外部にリクエストを投げる
+## JOINと集計
 - - -
 
-- 特に気にせず普通に投げることができる
-- ただし、受ける側に大量リクエストを投げることになるので注意
+```scala
+val master = sc.textFile("src/main/resources/master.csv")
+    .map(s => s.split(",")).map(xs => (xs(0), xs(1).toInt))
+
+val tran = sc.textFile("src/main/resources/tran.csv")
+    .map(s => s.split(",")).map(xs => (xs(0), ""))
+
+tran.join(master)
+    .map(x => (x._1, x._2._2))
+    .reduceByKey((r, x) => r + x)
+    .foreach(println)
+```
+
+結果:
+```
+(ピカチュウ,1000)
+(ポッポ,100)
+```
 
 ---
 
-## よくある業務処理4 - データーベースの利用
+## よくある業務処理3 - データーベースの利用
 - - -
 
+- 業務データはなんだかんだでファイルじゃなくてRDB
 - SparkはRDBのデータもDataFrameを使い簡単に処理できる
-- SparkのAPIだけではなく、SQLの利用も可能
 - RDBとJSONファイるをJOINする変態的なことも出来る
 
 ---
@@ -327,23 +345,16 @@ ${SPARK_HOME}/bin/spark-submit \
 ## DataFrameによるRDBアクセス
 - - -
 
-```[java]
-String sql = "SELECT MIN(id) as min, MAX(id) as max FROM users";
-long min, max;
-try(Connection con = DriverManager.getConnection(url, user, password);Statement st = con.createStatement();ResultSet rs = st.executeQeury(sql)){
-	rs.next();
-	min = rs.getLong("min");
-	max = rs.getLong("max");
-}
-Map<String, String> options = new HashMap<>();
-options.put(url, "jdbc:mysql://localhost");
-options.put("dbtable", "users");
-options.put("partitionColumn", "id");
-options.put("lowerBound", 0);
-options.put("upperBound",1000);
-options.put("numPartitions", 100); // 100並列でSQLを投げる
+```java
+val options = Map(
+	"url" ->  "jdbc:mysql://localhost",
+	"dbtable" -> "users",
+	"partitionColumn" -> "id",
+	"lowerBound" -> 0,
+	"upperBound" -> 1000,
+	"numPartitions" -> 100) // 100並列でSQLを投げる
 
-DataFrame df = sc.read.format("jdbc").options(options).load();
+val df = sc.read.format("jdbc").options(options).load();
 df.select("age")
 	.filter(x -> x < 17)
 	.count();
@@ -357,7 +368,11 @@ df.select("age")
 - 単純にクエリを分割することで各レコードへの並行処理を実現
 
 ```sql
-SELECT "KEY" ,,, FROM A_TABLE WHERE ID < 33333
+SELECT "KEY" ,,, FROM A_TABLE WHERE ID <= 10
+SELECT "KEY" ,,, FROM A_TABLE WHERE 10 < ID and ID <= 20
+SELECT "KEY" ,,, FROM A_TABLE WHERE 20 < ID and ID <= 30
+...
+SELECT "KEY" ,,, FROM A_TABLE WHERE 990 < ID and ID <= 1000
 ```
 
 ---
