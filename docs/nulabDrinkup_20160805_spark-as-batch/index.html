@@ -101,6 +101,11 @@ Batch FrameworkとしてのApache Spark
 
 ---
 
+#What ?
+
+---
+
+
 ## バッチフレームワークの分類
 - - -
 
@@ -132,7 +137,7 @@ Batch FrameworkとしてのApache Spark
 ## Apache Sparkって何？
 - - -
 
-- Hadoopファミリの一つ
+- コンテナ型のバッチでHadoopファミリの一つ
 - ポストHadoop MapReduce
 - 分散並列環境でのジョブ実行/ストリーム処理が得意
 - インメモリ処理が中心でMapReduceよりずっと高速
@@ -222,6 +227,9 @@ Array("ポッポ", "ポッポ", "ピカチュウ",
 ## ExecutorとDriver
 - - -
 
+- DriverからExecutorにシリアライズされて分散される
+- どの処理をどのExecutorで実行させるかはデータ等を考慮してSparkが判断
+
 <img src="img01.png"></img>
 
 ---
@@ -230,8 +238,8 @@ Array("ポッポ", "ポッポ", "ピカチュウ",
 - - -
 
 - SparkにはRDDを別のRDDに変換する「**変換(Transformation)**」と、RDDに対して処理を行う「**アクション(Action)**」がある
-- mapやfilterといった「変換」はStreamAPI同様に遅延実行なので、foreachやreduce、countといった「アクション」が走るまで実際の処理はされない
-- 変換は再計算される可能性があるので、副作用のない実装にする必要がある
+- mapやfilterといった「変換」はStreamAPI同様に**遅延実行**なので、foreachやreduce、countといった「アクション」が走るまで実際の処理はされない
+- 変換は**再計算される可能性**があるので、副作用の無い実装にする必要がある
 
 ---
 
@@ -241,7 +249,7 @@ Array("ポッポ", "ポッポ", "ピカチュウ",
 
 - Javaコマンドからも実行できるが、通常はspark-submitコマンドを使う
 - スケジューラにアプリケーションを配布して実行する
-- Driver/Executorの処理が終わるまで返ってこないので、Bashや既存ジョブマネとも連携できる
+- Driver/Executorの処理が終わるまで返ってこないので、Bashや既存のジョブスケジューラとも連携できる
 
 ```[bash]
 ${SPARK_HOME}/bin/spark-submit \
@@ -255,11 +263,11 @@ ${SPARK_HOME}/bin/spark-submit \
 
 ---
 
-# 業務処理の実装例
+# How ?
 
 ---
 
-## 業務処理とSpark
+## 業務処理とApache Spark
 - - -
 
 - Webで見つかる事例としては機械学習やログ解析/データサイエンスが多い
@@ -281,7 +289,10 @@ ${SPARK_HOME}/bin/spark-submit \
 </table>
 
 ---
-## 地域別集計例
+
+## reduceByKeyによる地域別集計
+- - -
+
 
 ```scala
 sc.textFile("src/main/resources/test.csv")
@@ -305,15 +316,15 @@ sc.stop()
 
 - トランザクションにあるもの価格を集計
 
-商品マスタ(master.csv)
+ポケモンマスタ(master.csv)
 <table>
-	<tr><th>名前</th><th>価格</th></tr>
+	<tr><th>名前</th><th>価値</th></tr>
 	<tr><td>ピカチュウ</td><td>1000</td></tr>
 	<tr><td>ポッポ</td><td>10</td></tr>
 	<tr><td>コラッタ</td><td>10</td></tr>
 </table>
 
-売上トランザクション(tran.csv)
+ゲット一覧(tran.csv)
 <table>
 	<tr><th>名前</th><th>場所</th></tr>
 	<tr><td>ピカチュウ</td><td>大濠公園</td></tr>
@@ -439,13 +450,13 @@ SELECT "KEY" ,,, FROM A_TABLE WHERE 990 < ID and ID <= 1000
 - **マルチスレッド**であることを意識する
 	- スレッドセーフじゃないフィールド値等を触らない
 - **分散環境で**あることを意識する
-	- インスタンスは初期化されているいかもしれない
+	- static変数使うと大体困る
 - **遅延実行**であることを意識する
 	- 書いてある順番で実行されるとは限らない
 
 ---
 
-# なぜSparkでバッチ？
+# Why ?
 
 ---
 
@@ -475,7 +486,7 @@ SELECT "KEY" ,,, FROM A_TABLE WHERE 990 < ID and ID <= 1000
 	- 月末だけ処理が重いとか
 - １台が死んでもジョブ全体は死なない
 - Active/Actice構成を自作するのは結構面倒
-	- 上手に運用するための制約が必要になる
+	- 上手に運用するための**制約が必要**になる
 
 ---
 
@@ -526,8 +537,8 @@ SELECT "KEY" ,,, FROM A_TABLE WHERE 990 < ID and ID <= 1000
 ## まとめ
 - - -
 
-- Apache Sparkによる普通の業務バッチは結構簡単に書けそう
-- Bash等から普通に実行できるので既存のジョブ管理システムとの連携もできる
+- Apache Sparkによる「ふつう」の業務バッチは結構簡単に書けそう
+- Bash等から普通に実行できるので既存のジョブスケジューラとの連携もできる
 - 単なるプログラミングモデル以上に、エコシステムが出来ているので、運用面の強みが期待できる
 - ただし、クラスタの運用はツラいとも聞くので本格運用したらまた違うかも
     　
