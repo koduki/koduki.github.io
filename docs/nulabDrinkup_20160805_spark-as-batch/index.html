@@ -28,6 +28,10 @@
 			.reveal h2 {
 				font-size:120%;
 			}
+			.reveal strong{
+				color:yellow;
+
+			}
 		</style>
 		<!-- Printing and PDF exports -->
 		<script>
@@ -56,6 +60,8 @@ Batch FrameworkとしてのApache Spark
 ## 自己紹介
 - - -
 
+### Hiroaki Nakada
+
 <img src="twitter.png"></img>
 - [@koduki](https://twitter.com/koduki)
 - 天神あたりで働くScalaやJavaが好きなエンジニア
@@ -76,7 +82,7 @@ Batch FrameworkとしてのApache Spark
 
 - [SPARC](https://ja.wikipedia.org/wiki/SPARC)
 
-<img src="http://www.oracle.com/us/assets/im08t0-sparc-supercluster-t4-4-1-520567.jpg"></img>
+<img src="im08t0-sparc-supercluster-t4-4-1-520567.jpg"></img>
 
 ---
 
@@ -206,10 +212,10 @@ Array("ポッポ", "ポッポ", "ピカチュウ",
 ## Sparkの実行モデル
 - - -
 
-- Spark側のコードはマルチスレッドかつ分散環境で動いている
+- Spark側のコードは**マルチスレッド**かつ**分散環境**で動いている
 - コードは通常プロセスであるDriverと分散処理プロセスであるExecutorに分かれて実行される
-- ExecutorではRDDと呼ばれる分散並列コレクションに対して処理を行う
-- 実際の処理はExecutor内でさらにマルチスレッドで行われる
+- Executorでは**RDD**と呼ばれる**分散並列コレクション**に対して処理を行う
+- 実際の処理はパーティーションという単位で並列に実行される
 
 ---
 
@@ -223,7 +229,7 @@ Array("ポッポ", "ポッポ", "ピカチュウ",
 ## 変換とアクション
 - - -
 
-- SparkにはRDDを別のRDDに変換する「変換(Transformation)」と、RDDに対して処理を行う「アクション(Action)」がある
+- SparkにはRDDを別のRDDに変換する「**変換(Transformation)**」と、RDDに対して処理を行う「**アクション(Action)**」がある
 - mapやfilterといった「変換」はStreamAPI同様に遅延実行なので、foreachやreduce、countといった「アクション」が走るまで実際の処理はされない
 - 変換は再計算される可能性があるので、副作用のない実装にする必要がある
 
@@ -311,11 +317,21 @@ sc.stop()
 <table>
 	<tr><th>名前</th><th>場所</th></tr>
 	<tr><td>ピカチュウ</td><td>大濠公園</td></tr>
+	<tr><td>ポッポ</td><td>10</td></tr>
+	<tr><td>ポッポ</td><td>10</td></tr>
+	<tr><td>ポッポ</td><td>10</td></tr>
+	<tr><td>ポッポ</td><td>10</td></tr>
+	<tr><td>ポッポ</td><td>10</td></tr>
+	<tr><td>ポッポ</td><td>10</td></tr>
+	<tr><td>ポッポ</td><td>10</td></tr>
+	<tr><td>ポッポ</td><td>10</td></tr>
+	<tr><td>ポッポ</td><td>10</td></tr>
+	<tr><td>ポッポ</td><td>10</td></tr>
 </table>
 
 ---
 
-## JOINと集計
+## JOINによるマッチング処理
 - - -
 
 ```scala
@@ -353,7 +369,7 @@ tran.join(master)
 
 - RDDをさらに抽象化した高レベルAPI. Spark2.0ではこちらが主流の見込み
 - 実行計画を取り最適化されるので、RDDよりも高速
-- SparkのAPIはもちろんSQLでアクセスすることも可能
+- SparkのAPIはもちろん**SQLでアクセス**することも可能
 - 複数のデータソースをとれる(RDB, JSON, CSV...)
 
 ---
@@ -420,16 +436,16 @@ SELECT "KEY" ,,, FROM A_TABLE WHERE 990 < ID and ID <= 1000
 ## 書くときの注意点
 - - -
 
-- マルチスレッドであることを意識する
+- **マルチスレッド**であることを意識する
 	- スレッドセーフじゃないフィールド値等を触らない
-- 分散環境であることを意識する
+- **分散環境で**あることを意識する
 	- インスタンスは初期化されているいかもしれない
-- 遅延実行であることを意識する
+- **遅延実行**であることを意識する
 	- 書いてある順番で実行されるとは限らない
 
 ---
 
-# なぜSparkを使うのか？
+# なぜSparkでバッチ？
 
 ---
 
@@ -437,7 +453,7 @@ SELECT "KEY" ,,, FROM A_TABLE WHERE 990 < ID and ID <= 1000
 - - -
 
 - 単に並列コレクション操作がしたいだけならScala単独で可能
-- 巨大なメモリが欲しいなら2000万円くらい出して6TBくらいのサーバを買う手もある
+- 巨大なメモリが欲しいなら2000万円くらい出して**6TBくらいのサーバ**を買う手もある
 	- EC2で揃えても6TBだとr3を25台で月額500万円近くなので高すぎる値段ではない
 - ではSparkに何を期待するのか？
 
