@@ -53,12 +53,16 @@
 Neo4jを触ってみた
 ----------------------------------
 
+2016/08/26
+
 @koduki
 
 ---
 
 ## 自己紹介
 - - -
+
+#### Hiroaki, Nakada
 
 <img src="twitter.png"></img>
 - [@koduki](https://twitter.com/koduki)
@@ -67,7 +71,7 @@ Neo4jを触ってみた
 
 ---
 
-## 告知
+## ちょっと告知
 - - -
 
 - 10月22日に楽天テクノロジーカンファレンス 2016をやります！
@@ -80,7 +84,7 @@ http://tech.rakuten.co.jp/
 ## Neo4jってなに？
 - - -
 
-- Javaで実装されたグラフDB
+- Javaで実装されたグラフDB <- ** 今日のJava要素 **
 - Derbyのように組み込みでもサーバモードでも使える
 
 ---
@@ -108,6 +112,10 @@ http://tech.rakuten.co.jp/
 
 - グラフ理論のグラフ
 - ノードとエッジからなる数学的対象
+- 詳しくは「[最短経路の本　レナのふしぎな数学の旅](http://hb.afl.rakuten.co.jp/hgc/0ae8470b.506b2401.0ae8470c.1cceafe7/?pc=http%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F5248769&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F12677991%2F&scid=af_item_txt&link_type=text&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJ0ZXh0Iiwic2l6ZSI6IjMwMHgzMDAiLCJuYW0iOjEsIm5hbXAiOiJkb3duIiwiY29tIjoxLCJjb21wIjoiZG93biIsInByaWNlIjoxLCJib3IiOjEsImNvbCI6MCwidGFyIjoxfQ%3D%3D" target="_blank" style="word-wrap:break-word;) 」とか参照
+
+<img src="6n-graf.svg.png"></img>  <img src="http://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4311/43110011.jpg?_ex=200x200&s=2&r=1"></img>
+
 
 ---
 
@@ -118,6 +126,8 @@ http://tech.rakuten.co.jp/
 - ソーシャルグラフの解析(friend-of-a-friend)
 - レコメンデーション
 - ページランク
+
+** ＼RDBで連結リスト的なのを作るのが辛くない！／ **
 
 ---
 
@@ -236,11 +246,40 @@ driver.close();
 
 ---
 
+## JDBCでもOK?
+
+- - -
+
+しかし、投げるのはSQLではなく、CypherQL
+
+https://github.com/neo4j-contrib/neo4j-jdbc
+
+```java
+// Connecting
+try (Connection con = DriverManager.getConnection("jdbc:neo4j:bolt://localhost", 'neo4j', password)) {
+
+    // Querying
+    String query = "MATCH (u:User)-[:FRIEND]-(f:User) WHERE u.name = {1} RETURN f.name, f.age";
+    try (PreparedStatement stmt = con.prepareStatement(query)) {
+        stmt.setString(1,"John");
+
+        try (ResultSet rs = stmt.execute()) {
+            while (rs.next()) {
+                System.out.println("Friend: "+rs.getString("f.name")+" is "+rs.getInt("f.age"));
+            }
+        }
+    }
+}
+```
+
+---
+
 ## まとめ
 - - -
 
 - グラフDBはRDBとは違ったことが簡単にできそう
 - 個人的にはジョブ分析とかにも結構使える感触がある
+- 正規化というかデータの一貫性は自力？ RDBもよく壊れてるけど...
 - 性能は未知数
     　
 	　</script>
