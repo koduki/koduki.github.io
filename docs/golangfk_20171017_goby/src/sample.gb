@@ -1,0 +1,15 @@
+class Number
+	def initialize(n)
+		@n = n   
+	end
+
+	def show
+		puts @n
+	end
+end
+
+(1..10).to_a.map do |n| 
+	Number.new n
+end.each do |n| 
+	n.show 
+end
