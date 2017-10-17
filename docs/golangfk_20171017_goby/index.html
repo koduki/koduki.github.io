@@ -62,24 +62,22 @@ RubyライクなGoベース言語: Goby
 ## 自己紹介
 - - -
 
-#### Hiroaki, Nakada
-
 <img src="twitter.png"></img>
 - [@koduki](https://twitter.com/koduki)
-- 天神あたりで働くRubyとかScalaやRubyが好きなエンジニア
+- 天神あたりで働くJavaかScalaやRubyが好きなエンジニア
 - Goは興味はまだまだ初心者。Gossとかかなり気になります
 
 ---
 
-## ちょっと告知
+## ちょっと宣伝
 - - -
 
 - **10月28日**に楽天テクノロジーカンファレンス 2017をやります！
 - 福岡会場は**博多駅前**の楽天オフィス
 - 東京とのサテライト中継や福岡社員の発表もあります。
-- **ビール**とピザ？もあるのでぜひお越しを
+- 残念ながらGoの話はないけれど**ビール**とピザ？もあるのでぜひお越しを
 
-http://tech.rakuten.co.jp/
+https://tech.rakuten.co.jp/rtc2017/satellite/fukuoka/
 https://fb.com/groups/fukuokas/permalink/1429932410376426/
 
 ---
@@ -91,16 +89,22 @@ https://fb.com/groups/fukuokas/permalink/1429932410376426/
 - YACC等は使わずに**Goのみ**でパーサやスタックマシンベースのVMを作成
 - 出来たばかりだが開発はとても活発。**今日も**コミットありました！
 
-- https://sample.goby-lang.org/
 - https://github.com/goby-lang/goby
+- https://sample.goby-lang.org/
 
 ---
 
 ## 文法
 - - -
 
-- 100%互換ではないがRubyライクな文法
-- 現時点ではメタプログラミング的な部分は弱い
+- 100%互換ではないがRubyライクな文法とGoの要素
+- 現時点ではメタプログラミング的な部分実装されていない
+
+```ruby
+class Goby < Ruby
+	include Go
+end
+```
 
 ---
 
@@ -155,15 +159,15 @@ puts fib(30)
 - トランスパイラじゃなくてVMだし現時点では当然かも
 
 ```bash
+# goby
 root@2f8e5db5270e:/go/src/github.com/goby-lang/goby$ time goby /src/fib.gb
 832040
 
 real    0m15.062s
 user    0m15.550s
 sys     0m1.060s
-```
 
-```bash
+# ruby
 root@ca3eab5d71fa:/$ time ruby /src/fib.gb
 832040
 
@@ -174,10 +178,10 @@ sys     0m0.010s
 
 ---
 
-## ゴルーチン
+## Goroutine
 - - -
 
-- ゴルーチンはThreadメソッドで作成できる
+- GoroutineはThreadメソッドで作成できる
 - チャンネルも利用の可能
 
 ```ruby
@@ -289,7 +293,7 @@ puts(r) #=> "102334155"
 - 多分Goと同等
 
 ```bash
-# gobyでfib(40)の実行結果
+# goby+goでfib(40)の実行結果
 root@ac9feea852f8:/go/src/github.com/goby-lang/goby$ time goby /src/sample4.gb 
 102334155
 
@@ -305,6 +309,15 @@ real	0m15.987s
 user	0m15.76s  
 sys	0m0.0.11s 
 ```
+
+---
+
+## 何が嬉しいか
+- - - 
+
+- 高いパフォーマンスを要する部分を移譲できる
+- 完成度の高いライブラリを組み込める
+- goに習熟してなくても比較的安全なプリケーションガ作れる？？？
 
 ---
 
@@ -331,7 +344,7 @@ Goby 0.1.3 😺 😉 🤣
 - - -
 
 - Rubyライクな文法でGo言語の機能を使えるのが面白い
-- ただし、まだまだ発展途上
+- 困ったらコード読まないとなのでGoの勉強になる
 - スクリプト含めたシングルパッケージ化とかは試してみたい
 - GAEやAWS Lambadaのスピンアップタイム含めたベンチマークも取ってみたい
     　
