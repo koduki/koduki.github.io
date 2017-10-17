@@ -11,7 +11,7 @@
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
-		<script src="https://cdn.rawgit.com/knsv/mermaid/0.5.1/dist/mermaid.min.js"></script>
+		<script src="js/mermaid.min.js"></script>
 		<script>mermaid.initialize({startOnLoad:true});</script>
 		<style>
 			.reveal .slides  {
@@ -68,7 +68,7 @@ RubyライクなGoベース言語: Goby
 - [@koduki](https://twitter.com/koduki)
 - 天神あたりで働くScalaやJavaが好きなエンジニア
 - でもRubyの方がもーっと好きです
-- Goは興味はあるけど今のところHello Worldレベル
+- Goは興味はあるけど今のところHello Worldレベル。Gossとかかなり気になる
 
 ---
 
@@ -156,7 +156,7 @@ puts fib(30)
 - トランスパイラじゃなくてVMだし現時点では当然かも
 
 ```bash
-root@2f8e5db5270e:/go/src/github.com/goby-lang/goby# time goby /src/fib.gb
+root@2f8e5db5270e:/go/src/github.com/goby-lang/goby$ time goby /src/fib.gb
 832040
 
 real    0m15.062s
@@ -164,8 +164,8 @@ user    0m15.550s
 sys     0m1.060s
 ```
 
-```
-root@ca3eab5d71fa:/# time ruby /src/fib.gb
+```bash
+root@ca3eab5d71fa:/$ time ruby /src/fib.gb
 832040
 
 real    0m0.107s
@@ -197,10 +197,10 @@ puts i
 
 ---
 
-## プラグイン周り
+## プラグイン
 - - -
 
-- Goで書いたスクリプトやgoの各種ライブラリをsoファイル経由で呼べる
+- Goで書いたスクリプトや**goの各種ライブラリをsoファイル経由**で呼べる
 - Goのブラグイン由来の機能らしいので**現在はLinuxのみ**サポート
 
 ```ruby
@@ -211,7 +211,7 @@ p = Plugin.generate("fmt") do |p|
   p.link_function("fmt", "Printf")
 end
 
-conn, err = p.go_func("Printf", "Hello Goby\n")
+p.go_func("Printf", "Hello Goby\n")
 ```
 
 ---
@@ -248,6 +248,63 @@ import(
 
 var Printf = fmt.Printf
 func main() {}
+```
+
+---
+
+## フィボナッチ with Plugin
+- - -
+
+- Goでフィボナッチを書いてGobyから呼び出す
+- 自分で書いたコードは**Plugin.use**で使う
+- 修正時はsoファイルの消し忘れに注意
+
+```go
+package main
+
+func Fib(n int) int {
+    if n <= 1 {
+        return n
+    }
+    return Fib(n-1) + Fib(n-2)
+}
+
+func main() {}
+```
+
+```ruby
+require "plugin"
+
+p = Plugin.use "/src/fib.go"
+r = p.go_func("Fib", 40)
+
+puts(r) #=> "102334155"
+```
+
+---
+
+## 実行結果
+- - -
+
+- Rubyより、ずっとはやい!!
+- 多分Goと同等
+
+```bash
+# gobyでfib(40)の実行結果
+root@ac9feea852f8:/go/src/github.com/goby-lang/goby$ time goby /src/sample4.gb 
+102334155
+
+real	0m0.909s
+user	0m0.910s
+sys	0m0.010s
+
+# rubyでfib(40)の実行結果
+$ ruby src/fib40.rb  
+102334155
+
+real	0m15.987s
+user	0m15.76s  
+sys	0m0.0.11s 
 ```
 
 ---

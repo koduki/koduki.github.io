@@ -5,4 +5,4 @@ p = Plugin.generate("fmt") do |p|
   p.link_function("fmt", "Printf")
 end
 
-conn, err = p.go_func("Printf", "Hello Goby\n")
+p.go_func("Printf", "Hello Goby\n")
