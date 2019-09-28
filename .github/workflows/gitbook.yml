@@ -1,0 +1,20 @@
+name: GitBook site CI
+
+on:
+  push:
+    branches:
+      - release/book-introduction-of-jfr
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build in fellah/gitbook
+      run: |
+        docker run \
+        -v ${{ github.workspace }}/docs/book-introduction-of-jfr:/srv/gitbook  \
+        fellah/gitbook gitbook build
+    - name: Deploy
+      run: git commit add docs/book-introduction-of-jfr/_book && git commit -m "Update sites" -a
