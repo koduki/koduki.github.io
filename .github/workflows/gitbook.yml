@@ -1,6 +1,9 @@
 name: GitBook site CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - release/book-introduction-of-jfr
 
 jobs:
   build:
@@ -8,8 +11,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Build the site by gitbook build
+    - name: Build
       run: |
         docker run \
         -v ${{ github.workspace }}/docs/book-introduction-of-jfr:/srv/gitbook  \
         fellah/gitbook gitbook build
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v2.4.0
+      env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: ./_book
