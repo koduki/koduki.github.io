@@ -1,6 +1,0 @@
-require "plugin"
-
-p = Plugin.use "/src/fib.go"
-r = p.go_func("Fib", 40)
-
-puts(r) #=> "102334155"
