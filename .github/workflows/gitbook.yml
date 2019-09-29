@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Build
+    - name: Build in fellah/gitbook
       run: |
         docker run \
         -v ${{ github.workspace }}/docs/book-introduction-of-jfr:/srv/gitbook  \
@@ -21,4 +21,4 @@ jobs:
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.PERSONAL_TOKEN }}
         PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: ./_book
+        PUBLISH_DIR: ./docs/book-introduction-of-jfr/_book
