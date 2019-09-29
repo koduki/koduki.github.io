@@ -1,0 +1,15 @@
+name: Jekyll site CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the site by gitbook build
+      run: |
+        docker run \
+        -v ${{ github.workspace }}/docs/book-introduction-of-jfr:/srv/gitbook fellah/gitbook gitbook build"
