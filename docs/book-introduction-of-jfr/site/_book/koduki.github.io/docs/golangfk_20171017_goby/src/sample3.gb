@@ -1,0 +1,8 @@
+require "plugin"
+
+p = Plugin.generate("fmt") do |p|
+  p.import_pkg("", "fmt")
+  p.link_function("fmt", "Printf")
+end
+
+p.go_func("Printf", "Hello Goby\n")
