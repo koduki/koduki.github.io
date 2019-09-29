@@ -17,8 +17,4 @@ jobs:
         -v ${{ github.workspace }}/docs/book-introduction-of-jfr:/srv/gitbook  \
         fellah/gitbook gitbook build
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2.4.0
-      env:
-        ACTIONS_DEPLOY_KEY: ${{ secrets.PERSONAL_TOKEN }}
-        PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: ./
+      run: git commit add docs/book-introduction-of-jfr/_book && git commit -m "Update sites" -a
