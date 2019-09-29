@@ -21,4 +21,4 @@ jobs:
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.PERSONAL_TOKEN }}
         PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: ./docs/book-introduction-of-jfr/_book
+        PUBLISH_DIR: ./
