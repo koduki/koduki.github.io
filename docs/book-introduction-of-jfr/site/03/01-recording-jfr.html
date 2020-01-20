@@ -1,0 +1,507 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>3.1 JDK Flight Recorderの記録 · 入門: JDK Flight Recoder</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    目次
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../preface.html">
+            
+                <a href="../preface.html">
+            
+                    
+                    はじめに
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    1章　JDK Flight Recoder とは？
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../01/01-what_is_JFR.html">
+            
+                <a href="../01/01-what_is_JFR.html">
+            
+                    
+                    1.1 JDK Flight Recorder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../01/02-other_tools.html">
+            
+                <a href="../01/02-other_tools.html">
+            
+                    
+                    1.2 Javaにおけるパフォーマンス分析と障害診断
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../01/03-history_of_jfr.html">
+            
+                <a href="../01/03-history_of_jfr.html">
+            
+                    
+                    1.3 JFRの歴史 - JRockitからOpenJDKまで
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../01/04-install_jmc.html">
+            
+                <a href="../01/04-install_jmc.html">
+            
+                    
+                    1.4 JFRの動作環境とJMCのインストール
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    2章　JDK Flight Recorderのアーキテクチャ
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../02/01-jfr-architecture.html">
+            
+                <a href="../02/01-jfr-architecture.html">
+            
+                    
+                    2.1 JFRのアーキテクチャ概要
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" >
+            
+                <span>
+            
+                    
+                    2.2 JFRとオーバーヘッド
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    3章　JDK Flight Recorderの記録
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.5.1" data-path="01-recording-jfr.html">
+            
+                <a href="01-recording-jfr.html">
+            
+                    
+                    3.1 JDK Flight Recorderの記録
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >3.1 JDK Flight Recorderの記録</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="31-jdk-flight-recorder&#x306E;&#x8A18;&#x9332;">3.1 JDK Flight Recorder&#x306E;&#x8A18;&#x9332;</h1><h2 id="jfr&#x306E;&#x53D6;&#x5F97;">JFR&#x306E;&#x53D6;&#x5F97;</h2><p>JFR&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;&#x306B;&#x306F;&#x4EE5;&#x4E0B;&#x306E;&#x3044;&#x305A;&#x308C;&#x304B;&#x306E;&#x65B9;&#x6CD5;&#x3067;JFR&#x306E;&#x8A18;&#x9332;&#x3092;&#x958B;&#x59CB;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p><ol><li>GUI(JMC/VisualVM)&#x3067;&#x8A18;&#x9332;&#x3059;&#x308B;
+</li>
+<li>CLI&#x3067;&#x8A18;&#x9332;&#x3059;&#x308B;
+</li>
+<li>JVM&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x8A18;&#x9332;&#x3059;&#x308B;
+</li>
+<li>&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x4E0A;&#x304B;&#x3089;&#x8A18;&#x9332;&#x3059;&#x308B;
+</li></ol>
+<p>&#x5B9F;&#x904B;&#x7528;&#x3068;&#x3057;&#x3066;&#x4E00;&#x756A;&#x5229;&#x7528;&#x3059;&#x308B;&#x306E;&#x306F;JVM&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306E;&#x6307;&#x5B9A;&#x3060;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x304C;&#x4ED6;&#x306E;&#x65B9;&#x6CD5;&#x306B;&#x95A2;&#x3057;&#x3066;&#x3082;&#x8AAC;&#x660E;&#x3057;&#x307E;&#x3059;&#x3002;</p><h2 id="guijmcvisualvm&#x3067;&#x8A18;&#x9332;&#x3059;&#x308B;">GUI(JMC/VisualVM)&#x3067;&#x8A18;&#x9332;&#x3059;&#x308B;</h2><p>JDK Mission Control&#x307E;&#x305F;&#x306F;VisualVM&#x3092;&#x5229;&#x7528;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;JFR&#x306E;&#x8A18;&#x9332;&#x3092;GUI&#x304B;&#x3089;&#x958B;&#x59CB;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x51FA;&#x6765;&#x307E;&#x3059;&#x3002;
+GUI&#x304B;&#x3089;&#x8D77;&#x52D5;&#x3067;&#x304D;&#x3001;&#x7D50;&#x679C;&#x3082;&#x305D;&#x306E;&#x307E;&#x307E;JMC&#x7B49;&#x3067;&#x5206;&#x6790;&#x3067;&#x304D;&#x308B;&#x306E;&#x3067;&#x5F93;&#x6765;&#x7684;&#x306A;&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30E9;&#x3068;&#x540C;&#x69D8;&#x306E;&#x4F7F;&#x3044;&#x65B9;&#x3092;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x51FA;&#x6765;&#x307E;&#x3059;&#x3002;</p><h2 id="cli&#x3067;&#x8A18;&#x9332;&#x3059;&#x308B;">CLI&#x3067;&#x8A18;&#x9332;&#x3059;&#x308B;</h2><p>jcmd&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x304B;&#x3089;JFR&#x306E;&#x8A18;&#x9332;&#x3092;&#x958B;&#x59CB;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x51FA;&#x6765;&#x307E;&#x3059;&#x3002;
+jcmd&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x306F;&#xFF11;&#x7AE0;&#x3067;&#x3082;&#x8AAC;&#x660E;&#x3057;&#x305F;&#x3068;&#x304A;&#x308A;&#x4E3B;&#x306B;<code>JFR&#x306E;&#x64CD;&#x4F5C;</code>, <code>&#x30D7;&#x30ED;&#x30BB;&#x30B9;&#x306E;&#x53D6;&#x5F97;</code>, <code>&#x30B9;&#x30EC;&#x30C3;&#x30C9;&#x30C0;&#x30F3;&#x30D7;&#x306E;&#x53D6;&#x5F97;</code>&#x7B49;&#x304C;&#x884C;&#x3048;&#x308B;Java&#x306E;&#x8A3A;&#x65AD;&#x30C4;&#x30FC;&#x30EB;&#x3067;&#x3059;&#x3002;</p><p>JFR&#x306B;&#x95A2;&#x9023;&#x3059;&#x308B;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x306F;&#x4EE5;&#x4E0B;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p><table>
+<thead>
+<tr><th> &#x30B3;&#x30DE;&#x30F3;&#x30C9; </th>
+<th> &#x8AAC;&#x660E; </th>
+</tr></thead><tbody>
+<tr><td style="text-align:left"> jcmd {&#x5F15;&#x6570;&#x306A;&#x3057;} </td>
+<td style="text-align:left"> Java&#x306E;&#x30D7;&#x30ED;&#x30BB;&#x30B9;&#x4E00;&#x89A7;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B; </td>
+</tr><tr><td style="text-align:left"> jcmd {&#x30D7;&#x30ED;&#x30BB;&#x30B9;ID} JFR.start {JFR&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;} </td>
+<td style="text-align:left"> JFR&#x306E;&#x8A18;&#x9332;&#x3092;&#x958B;&#x59CB;&#x3059;&#x308B; </td>
+</tr><tr><td style="text-align:left"> jcmd {&#x30D7;&#x30ED;&#x30BB;&#x30B9;ID} JFR.dump {JFR&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;} </td>
+<td style="text-align:left"> &#x5B9F;&#x884C;&#x4E2D;&#x306E;&#x8A18;&#x9332;&#x3092;&#x505C;&#x6B62;&#x3057;&#x5FAA;&#x74B0;&#x30D0;&#x30C3;&#x30D5;&#x30A1;&#x3088;&#x308A;&#x8A18;&#x9332;&#x5185;&#x5BB9;&#x3092;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x51FA;&#x529B;&#x3059;&#x308B; </td>
+</tr><tr><td style="text-align:left"> jcmd {&#x30D7;&#x30ED;&#x30BB;&#x30B9;ID} JFR.check </td>
+<td style="text-align:left"> JFR&#x306E;&#x5B9F;&#x884C;&#x60C5;&#x5831;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B; </td>
+</tr><tr><td style="text-align:left"> jcmd {&#x30D7;&#x30ED;&#x30BB;&#x30B9;ID} JFR.stop </td>
+<td style="text-align:left"> JFR&#x306E;&#x8A18;&#x9332;&#x3092;&#x505C;&#x6B62;&#x3059;&#x308B;</td>
+</tr></tbody></table>
+
+<p>&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x306A;&#x3057;&#x306E;jcmd&#x307E;&#x305F;&#x306F;PS&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3067;&#x30BF;&#x30FC;&#x30B2;&#x30C3;&#x30C8;&#x306E;&#x30D7;&#x30ED;&#x30BB;&#x30B9;ID&#x3092;&#x78BA;&#x8A8D;&#x3057;&#x3066;<code>JFR.start</code>&#x306A;&#x3069;&#x3092;&#x5B9F;&#x884C;&#x3057;&#x307E;&#x3059;&#x3002;
+&#x4F8B;&#x3048;&#x3070;&#x30D7;&#x30ED;&#x30BB;&#x30B9;ID&#x304C;1234&#x306E;Java&#x30D7;&#x30ED;&#x30BB;&#x30B9;&#x3067;&#xFF11;&#x5206;&#x611F;&#x306E;&#x8A18;&#x9332;&#x3092;&#x958B;&#x59CB;&#x3057;&#x3066;myrecording.jfr&#x306B;&#x4FDD;&#x5B58;&#x3059;&#x308B;&#x306B;&#x306F;&#x4EE5;&#x4E0B;&#x306E;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3092;&#x5B9F;&#x884C;&#x3057;&#x307E;&#x3059;&#x3002;</p><pre><code class="lang-bash">$ jcmd 1234 JFR.start duration=1m filename=myrecording.jfr</code></pre>
+<p>&#x5B9F;&#x969B;&#x306B;&#x306F;JFR&#x306E;&#x8D77;&#x52D5;&#x306F;&#x5F8C;&#x8FF0;&#x3059;&#x308B;JVM&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x6307;&#x5B9A;&#x3057;&#x3066;&#x3001;JFR&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x53D6;&#x5F97;&#x3057;&#x305F;&#x3044;&#x4EFB;&#x610F;&#x306E;&#x30BF;&#x30A4;&#x30DF;&#x30F3;&#x30B0;&#x3067;dump&#x3092;&#x4F7F;&#x3063;&#x3066;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x51FA;&#x529B;&#x3092;&#x3055;&#x305B;&#x308B;&#x306E;&#x304C;&#x5B9F;&#x904B;&#x7528;&#x3067;&#x306F;&#x591A;&#x3044;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;</p><pre><code class="lang-bash">$ jcmd 1234 JFR.dump filename=myrecording.jfr</code></pre>
+<p><code>JFR.dump</code>&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;JFR&#x306E;&#x8A18;&#x9332;&#x81EA;&#x4F53;&#x306F;&#x30E1;&#x30E2;&#x30EA;&#x4E0A;&#x306B;&#x5E38;&#x6642;&#x3057;&#x3064;&#x3064;&#x3001;&#x5FC5;&#x8981;&#x306A;&#x30BF;&#x30A4;&#x30DF;&#x30F3;&#x30B0;&#x3067;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306B;&#x51FA;&#x529B;&#x3059;&#x308B;&#x3068;&#x3044;&#x3046;&#x904B;&#x7528;&#x304C;&#x51FA;&#x6765;&#x307E;&#x3059;&#x3002;</p><h2 id="jvm&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x8A18;&#x9332;&#x3059;&#x308B;">JVM&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x8A18;&#x9332;&#x3059;&#x308B;</h2><p>JFR&#x306E;&#x8A18;&#x9332;&#x306E;&#x958B;&#x59CB;&#x3068;&#x3057;&#x3066;&#x6700;&#x3082;&#x983B;&#x7E41;&#x306B;&#x5229;&#x7528;&#x3059;&#x308B;&#x306E;&#x304C;JVM&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306E;&#x6307;&#x5B9A;&#x3067;&#x3059;&#x3002;</p><p>JFR&#x306F;&#x3084;&#x306F;&#x308A;&#x30D6;&#x30E9;&#x30C3;&#x30AF;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x5206;&#x6790;&#x306B;&#x5411;&#x3044;&#x305F;&#x4ED5;&#x7D44;&#x307F;&#x306A;&#x306E;&#x3067;&#x5E38;&#x6642;&#x6709;&#x52B9;&#x306B;&#x3057;&#x3066;&#x304A;&#x304F;&#x306E;&#x304C;&#x57FA;&#x672C;&#x7684;&#x306A;&#x6226;&#x7565;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;&#x305D;&#x3046;&#x306A;&#x308B;&#x3068;GUI&#x3084;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3067;&#x5FC5;&#x8981;&#x306A;&#x3068;&#x304D;&#x306B;&#x4ED8;&#x3051;&#x308B;&#x3068;&#x3044;&#x3046;&#x3088;&#x308A;&#x3082;&#x3001;JVM&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x8D77;&#x52D5;&#x6642;&#x306B;&#x3057;&#x3066;&#x3044;&#x3057;&#x3066;&#x5E38;&#x6642;&#x7A3C;&#x50CD;&#x3055;&#x305B;&#x3066;&#x304A;&#x304F;&#x306E;&#x304C;&#x30D9;&#x30B9;&#x30C8;&#x30D7;&#x30E9;&#x30AF;&#x30C6;&#x30A3;&#x30B9;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p><p>JVM&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;<code>-XX:StartFlightRecording</code>&#x3068;<code>-XX:FlightRecorderOptions</code>&#x3092;&#x4F7F;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;<code>-XX:StartFlightRecording</code>&#x306F;&#x6642;&#x9593;&#x56FA;&#x5B9A;&#x306E;&#x5834;&#x5408;&#x306E;&#x6307;&#x5B9A;&#x3001;<code>-XX:FlightRecorderOptions</code>&#x306F;&#x7D99;&#x7D9A;&#x5B9F;&#x884C;&#x306E;&#x6642;&#x306E;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x3059;&#x304C;&#x7D44;&#x307F;&#x5408;&#x308F;&#x305B;&#x3067;&#x4F7F;&#x3046;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308B;&#x8A8D;&#x8B58;&#x3067;&#x3059;&#x3002;</p><p>&#x6CE8;&#x610F;&#x70B9;&#x3068;&#x3057;&#x3066;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x304C;JDK8&#x306E;&#x9803;&#x3068;JDK9&#x4EE5;&#x964D;&#x3067;&#x5909;&#x308F;&#x3063;&#x3066;&#x3044;&#x308B;&#x3068;&#x3044;&#x3046;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;</p><p>&#x4F8B;&#x3048;&#x3070;&#x4EE5;&#x4E0B;&#x306E;JDK8&#x3068;JDK11&#x306F;&#x540C;&#x3058;&#x610F;&#x5473;&#x306E;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x3059;&#x3002;</p><p>JDK 8:</p><pre><code class="lang-bash">-XX:+UnlockCommercialFeatures
+-XX:+FlightRecorder
+-XX:FlightRecorderOptions=defaultrecording=<span class="hljs-literal">true</span>,
+dumponexit=<span class="hljs-literal">true</span>, dumponexitpath=/var/<span class="hljs-built_in">log</span>/myapp/myapp.jfr</code></pre>
+<p>JDK 11:</p><pre><code class="lang-bash">-XX:StartFlightRecording=dumponexit=<span class="hljs-literal">true</span>,
+filename=/var/<span class="hljs-built_in">log</span>/myapp/myapp.jfr</code></pre>
+<p>JDK11&#x304B;&#x3089;&#x306F;OpenJDK&#x306B;&#x5BC4;&#x8D08;&#x3055;&#x308C;&#x305F;&#x306E;&#x3067;JFR&#x306E;&#x5229;&#x7528;&#x306B;<code>UnlockCommercialFeatures</code>&#x304C;&#x4E0D;&#x8981;&#x306B;&#x306A;&#x3063;&#x305F;&#x3068;&#x3044;&#x3046;&#x306E;&#x3082;&#x3042;&#x308A;&#x307E;&#x3059;&#x304C;&#x3001;<code>-XX:+FlightRecorder</code>&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x304C;&#x5EC3;&#x6B62;&#x3055;&#x308C;&#x305F;&#x308A;<code>dumponexitpath</code>&#x304C;<code>filename</code>&#x306B;&#x306A;&#x3063;&#x305F;&#x308A;&#x3068;&#x5909;&#x308F;&#x3063;&#x305F;&#x90E8;&#x5206;&#x3082;&#x591A;&#x3044;&#x3067;&#x3059;&#x3002;</p><p>&#x305D;&#x306E;&#x305F;&#x3081;Web&#x306E;&#x8CC7;&#x6599;&#x3084;&#x65E2;&#x5B58;&#x306E;&#x904B;&#x7528;&#x30B9;&#x30AF;&#x30EA;&#x30D7;&#x30C8;&#x3092;&#x53C2;&#x8003;&#x306B;&#x3059;&#x308B;&#x6642;&#x306B;&#x306F;&#x6CE8;&#x610F;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;
+&#x6700;&#x65B0;&#x306E;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x306F;<a href="https://docs.oracle.com/en/java/javase/11/tools/java.html#GUID-3B1CE181-CD30-4178-9602-230B800D4FAE" target="_blank">Java SE 11 - Advanced Runtime Options</a>&#x3067;&#x78BA;&#x8A8D;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p><p>JFR&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x306F;&#x305D;&#x308C;&#x305E;&#x308C;&#x4EE5;&#x4E0B;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p><h3 id="xxstartflightrecording">XX:StartFlightRecording</h3><p><code>-XX:StartFlightRecording=parameter=value</code>&#x306F;jcmd&#x306E;<code>JFR.start</code>&#x3068;&#x7B49;&#x4FA1;&#x306A;JFR&#x3092;&#x958B;&#x59CB;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x3059;&#x3002;
+&#x30AB;&#x30F3;&#x30DE;&#x533A;&#x5207;&#x308A;&#x3067;&#x591A;&#x304F;&#x306E;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x51FA;&#x6765;&#x307E;&#x3059;&#x3002;</p><table>
+<thead>
+<tr><th style="text-align:left"> &#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3; </th>
+<th style="text-align:left"> &#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#x5024; </th>
+<th style="text-align:left"> &#x8AAC;&#x660E; </th>
+</tr></thead><tbody>
+<tr><td style="text-align:left"> delay=time </td>
+<td style="text-align:left"> 0s </td>
+<td style="text-align:left"> JFR&#x8A18;&#x9332;&#x306E;&#x958B;&#x59CB;&#x6642;&#x9593;&#x3092;&#x9045;&#x3089;&#x305B;&#x307E;&#x3059;&#x3002;&#x8D77;&#x52D5;&#x6642;&#x306E;&#x51E6;&#x7406;&#x3092;&#x4F8B;&#x5916;&#x3068;&#x3057;&#x3066;&#x8A18;&#x9332;&#x3057;&#x305F;&#x304F;&#x306A;&#x3044;&#x6642;&#x306B;&#x5229;&#x7528;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;&#x79D2;&#x306A;&#x3089;<code>s</code>, &#x5206;&#x306A;&#x3089;<code>m</code>, &#x6642;&#x9593;&#x306A;&#x3089;<code>h</code>&#x3092;&#x4ED8;&#x3051;&#x307E;&#x3059;&#x3002; </td>
+</tr><tr><td style="text-align:left"> disk={true, false} </td>
+<td style="text-align:left"> false </td>
+<td style="text-align:left"> &#x5FAA;&#x74B0;&#x30D0;&#x30C3;&#x30D5;&#x30A1;&#x306E;&#x5024;&#x3092;&#x30C7;&#x30A3;&#x30B9;&#x30AF;&#x306B;&#x66F8;&#x304D;&#x8FBC;&#x3080;&#x304B;&#x3069;&#x3046;&#x304B;&#x3092;&#x6307;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002; </td>
+</tr><tr><td style="text-align:left"> dumponexit={true, false} </td>
+<td style="text-align:left"> false </td>
+<td style="text-align:left"> JVM&#x30D7;&#x30ED;&#x30BB;&#x30B9;&#x304C;&#x30B7;&#x30E3;&#x30C3;&#x30C8;&#x30C0;&#x30A6;&#x30F3;&#x3057;&#x305F;&#x6642;&#x306B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306B;&#x30C0;&#x30F3;&#x30D7;&#x3057;&#x307E;&#x3059;&#x3002;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x540D;&#x304C;&#x6307;&#x5B9A;&#x3055;&#x308C;&#x3066;&#x3044;&#x306A;&#x3044;&#x5834;&#x5408;&#x306F;&#x30D7;&#x30ED;&#x30BB;&#x30B9;&#x306E;&#x8D77;&#x52D5;&#x3057;&#x305F;&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x306B;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x751F;&#x6210;&#x3055;&#x308C;&#x305F;&#x540D;&#x524D;&#x3067;&#x51FA;&#x529B;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x751F;&#x6210;&#x3055;&#x308C;&#x308B;&#x540D;&#x524D;&#x306F;&#x300C;&#x30D7;&#x30ED;&#x30BB;&#x30B9;ID&#x300D;&#x300C;&#x30EC;&#x30B3;&#x30FC;&#x30C7;&#x30A3;&#x30F3;&#x30B0;ID&#x300D;&#x300C;&#x30BF;&#x30A4;&#x30E0;&#x30B9;&#x30BF;&#x30F3;&#x30D7;&#x300D;&#x3092;&#x542B;&#x3093;&#x3067;&#x3044;&#x307E;&#x3059;&#x3002; &#x4F8B;: hotspot-pid-47496-id-1-2018_01_25_19_10_41.jfr </td>
+</tr><tr><td style="text-align:left"> duration=time </td>
+<td style="text-align:left"> 0s </td>
+<td style="text-align:left"> JFR&#x306E;&#x8A18;&#x9332;&#x6642;&#x9593;&#x3092;&#x6307;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002;&#x79D2;&#x306A;&#x3089;<code>s</code>, &#x5206;&#x306A;&#x3089;<code>m</code>, &#x6642;&#x9593;&#x306A;&#x3089;<code>h</code>, &#x65E5;&#x306A;&#x3089;<code>d</code>&#x3092;&#x4ED8;&#x3051;&#x307E;&#x3059;&#x3002; </td>
+</tr><tr><td style="text-align:left"> filename=path </td>
+<td style="text-align:left"> - </td>
+<td style="text-align:left"> JFR&#x306E;&#x8A18;&#x9332;&#x7D42;&#x4E86;&#x6642;&#x306B;&#x66F8;&#x304D;&#x8FBC;&#x307E;&#x308C;&#x308B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x540D;&#x3092;&#x6307;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002;&#x4EE5;&#x4E0B;&#x306E;&#x3088;&#x3046;&#x306B;&#x76F8;&#x5BFE;&#x30D1;&#x30B9;&#x304A;&#x3088;&#x3073;Windows/Unix&#x5F0F;&#x3067;&#x30D1;&#x30B9;&#x304C;&#x6307;&#x5B9A;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;<br><ul><li>recording.jfr</li><li>c:\recordings\recording.jfr</li><li>/home/user/recordings/recording.jfr</li></ul> </td>
+</tr><tr><td style="text-align:left"> name=identifier </td>
+<td style="text-align:left"> - </td>
+<td style="text-align:left"> &#x8A18;&#x9332;&#x306E;&#x540D;&#x524D;&#x3068;&#x8B58;&#x5225;&#x5B50;&#x3092;&#x6307;&#x5B9A;&#x3057;&#x307E;&#x3059; </td>
+</tr><tr><td style="text-align:left"> maxage=time </td>
+<td style="text-align:left"> 0s </td>
+<td style="text-align:left"> Disk&#x306B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x4FDD;&#x6301;&#x3059;&#x308B;&#x6700;&#x5927;&#x671F;&#x9593;&#x3092;&#x6307;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002;&#x6307;&#x5B9A;&#x3092;&#x8D8A;&#x3048;&#x308B;&#x3068;&#x53E4;&#x3044;&#x3082;&#x306E;&#x304B;&#x3089;&#x6D88;&#x3048;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;&#x79D2;&#x306A;&#x3089;<code>s</code>, &#x5206;&#x306A;&#x3089;<code>m</code>, &#x6642;&#x9593;&#x306A;&#x3089;<code>h</code>, &#x65E5;&#x306A;&#x3089;<code>d</code>&#x3092;&#x4ED8;&#x3051;&#x307E;&#x3059;&#x3002;0&#x306E;&#x5834;&#x5408;&#x306F;&#x7121;&#x9650;&#x306B;&#x4FDD;&#x5B58;&#x3057;&#x307E;&#x3059;&#x3002; </td>
+</tr><tr><td style="text-align:left"> maxsize=size </td>
+<td style="text-align:left"> 0m </td>
+<td style="text-align:left"> Disk&#x306B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x4FDD;&#x6301;&#x3059;&#x308B;&#x6700;&#x5927;&#x30D0;&#x30A4;&#x30C8;&#x30B5;&#x30A4;&#x30BA;&#x3092;&#x6307;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002;&#x6307;&#x5B9A;&#x3092;&#x8D8A;&#x3048;&#x308B;&#x3068;&#x53E4;&#x3044;&#x3082;&#x306E;&#x304B;&#x3089;&#x6D88;&#x3048;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;&#x5358;&#x4F4D;&#x3068;&#x3057;&#x3066;m,M,g,G&#x3092;&#x6307;&#x5B9A;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;0&#x306E;&#x5834;&#x5408;&#x306F;&#x7121;&#x9650;&#x306B;&#x4FDD;&#x5B58;&#x3057;&#x307E;&#x3059;&#x3002; </td>
+</tr><tr><td style="text-align:left"> path-to-gc-roots={true, false} </td>
+<td style="text-align:left"> false </td>
+<td style="text-align:left"> GC Root&#x3092;&#x8A3A;&#x65AD;&#x8A18;&#x9332;&#x306B;&#x542B;&#x3081;&#x307E;&#x3059;&#x3002;&#x3053;&#x308C;&#x306F;&#x30E1;&#x30E2;&#x30EA;&#x30EA;&#x30FC;&#x30AF;&#x306E;&#x5206;&#x6790;&#x306B;&#x6709;&#x52B9;&#x3067;&#x3059;&#x304C;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x30DA;&#x30CA;&#x30EB;&#x30C6;&#x30A3;&#x304C;&#x3042;&#x308B;&#x306E;&#x3067;&#x7591;&#x308F;&#x3057;&#x3044;&#x5834;&#x5408;&#x306E;&#x307F;&#x6709;&#x52B9;&#x306B;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002; </td>
+</tr><tr><td style="text-align:left"> settings=path </td>
+<td style="text-align:left"> default.jfc </td>
+<td style="text-align:left"> &#x8A18;&#x9332;&#x306B;&#x5229;&#x7528;&#x3059;&#x308B;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x8A2D;&#x5B9A;&#x30D5;&#x30A1;&#x30A4;&#x30EB;(JFC&#x30D5;&#x30A1;&#x30A4;&#x30EB;)&#x3092;&#x6307;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002;&#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#x306E;&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x306F;<code>JRE_HOME/lib/jfr</code>&#x3067;&#x3059;&#x3002;<code>defualt.jfc</code>&#x306F;&#x5FC5;&#x8981;&#x6700;&#x4F4E;&#x9650;&#x306E;&#x5024;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;&#x3088;&#x3046;&#x306B;&#x8A2D;&#x5B9A;&#x3057;&#x3066;&#x3042;&#x308A;&#x30AA;&#x30FC;&#x30D0;&#x30FC;&#x30D8;&#x30C3;&#x30C9;&#x304C;&#x5C0F;&#x3055;&#x3044;&#x3067;&#x3059;&#x3002;&#x5FC5;&#x8981;&#x306B;&#x5FDC;&#x3058;&#x3066;<code>profile.jfc</code>&#x3084;&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306B;&#x5909;&#x66F4;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</td>
+</tr></tbody></table>
+
+<h3 id="xxflightrecorderoptions">XX:FlightRecorderOptions</h3><p><code>-XX:FlightRecorderOptions=parameter=value</code>&#x306F;jcmd&#x306E;<code>JFR parameter</code>&#x3068;&#x7B49;&#x4FA1;&#x306A;JFR&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x3059;&#x3002;
+&#x30AB;&#x30F3;&#x30DE;&#x533A;&#x5207;&#x308A;&#x3067;&#x591A;&#x304F;&#x306E;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x51FA;&#x6765;&#x307E;&#x3059;&#x3002;</p><table>
+<thead>
+<tr><th style="text-align:left"> &#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3; </th>
+<th style="text-align:left"> &#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#x5024; </th>
+<th style="text-align:left"> &#x8AAC;&#x660E; </th>
+</tr></thead><tbody>
+<tr><td style="text-align:left"> memorysize=size </td>
+<td style="text-align:left"> 10MB </td>
+<td style="text-align:left"> &#x30D0;&#x30C3;&#x30D5;&#x30A1;&#x30E1;&#x30E2;&#x30EA;&#x306E;&#x30B5;&#x30A4;&#x30BA;&#x3092;&#x6307;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002;&#x3053;&#x306E;&#x5024;&#x306F;globalbuffersize&#x3068;numglobalbuffers&#x306E;&#x30B5;&#x30A4;&#x30BA;&#x306E;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x5229;&#x7528;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;&#x5358;&#x4F4D;&#x3068;&#x3057;&#x3066;m,M,g,G&#x304C;&#x6307;&#x5B9A;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002; </td>
+</tr><tr><td style="text-align:left"> globalbuffersize=size </td>
+<td style="text-align:left"> - </td>
+<td style="text-align:left"> &#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30D0;&#x30C3;&#x30D5;&#x30A1;&#x306E;&#x30E1;&#x30E2;&#x30EA;&#x91CF;&#x3092;&#x6307;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002;&#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#x30B5;&#x30A4;&#x30BA;&#x306F;&#x30E1;&#x30E2;&#x30EA;&#x30B5;&#x30A4;&#x30BA;&#x304B;&#x3089;&#x81EA;&#x52D5;&#x3067;&#x6C7A;&#x307E;&#x308A;&#x307E;&#x3059;&#x3002; </td>
+</tr><tr><td style="text-align:left"> numglobalbuffers=num </td>
+<td style="text-align:left"> - </td>
+<td style="text-align:left"> &#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30D0;&#x30C3;&#x30D5;&#x30A1;&#x306E;&#x3092;&#x6307;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002;&#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#x6570;&#x306F;&#x30E1;&#x30E2;&#x30EA;&#x30B5;&#x30A4;&#x30BA;&#x304B;&#x3089;&#x81EA;&#x52D5;&#x3067;&#x304D;&#x307E;&#x308A;&#x307E;&#x3059;&#x3002; </td>
+</tr><tr><td style="text-align:left"> threadbuffersize=size </td>
+<td style="text-align:left"> 8k </td>
+<td style="text-align:left"> &#x30ED;&#x30FC;&#x30AB;&#x30EB;&#x30D0;&#x30C3;&#x30D5;&#x30A1;&#x30B5;&#x30A4;&#x30BA;&#x306E;&#x6307;&#x5B9A;&#x3002;&#x3053;&#x306E;&#x5024;&#x3092;&#x5909;&#x66F4;&#x3059;&#x308B;&#x3068;&#x30AA;&#x30FC;&#x30D0;&#x30FC;&#x30D8;&#x30C3;&#x30C9;&#x304C;&#x5927;&#x304D;&#x304F;&#x306A;&#x308B;&#x6050;&#x308C;&#x304C;&#x3042;&#x308B; </td>
+</tr><tr><td style="text-align:left"> maxchunksize=size </td>
+<td style="text-align:left"> 12M </td>
+<td style="text-align:left"> &#x6700;&#x5927;&#x30C1;&#x30E3;&#x30F3;&#x30AF;&#x30B5;&#x30A4;&#x30BA;&#x3092;&#x6307;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002;&#x5358;&#x4F4D;&#x3068;&#x3057;&#x3066;m,M,g,G&#x304C;&#x6307;&#x5B9A;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;&#x6700;&#x5C0F;&#x30B5;&#x30A4;&#x30BA;&#x306F;1MB&#x3067;&#x3059;&#x3002; </td>
+</tr><tr><td style="text-align:left"> old-object-queue-size=number-of-objects </td>
+<td style="text-align:left"> 256 </td>
+<td style="text-align:left"> &#x30AD;&#x30E5;&#x30FC;&#x30A4;&#x30F3;&#x30B0;&#x3059;&#x308B;&#x53E4;&#x3044;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x6700;&#x5927;&#x6570;&#x3092;&#x6307;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002; </td>
+</tr><tr><td style="text-align:left"> repository=path </td>
+<td style="text-align:left"> &#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x306E;&#x4E00;&#x6642;&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;(e.g. /tmp) </td>
+<td style="text-align:left"> &#x5FAA;&#x74B0;&#x30D0;&#x30C3;&#x30D5;&#x30A1;&#x306E;&#x5024;&#x304C;&#x66F8;&#x304D;&#x8FBC;&#x307E;&#x308C;&#x308B;&#x30C7;&#x30A3;&#x30B9;&#x30AF;&#x9818;&#x57DF;&#x3092;&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x3067;&#x6307;&#x5B9A;&#x3057;&#x307E;&#x3059; </td>
+</tr><tr><td style="text-align:left"> retransform={true, false} </td>
+<td style="text-align:left"> true </td>
+<td style="text-align:left"> JVMTI&#x3092;&#x4F7F;&#x7528;&#x3057;&#x3066;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x518D;&#x5909;&#x63DB;&#x3059;&#x308B;&#x304B;&#x3069;&#x3046;&#x304B;&#x3092;&#x6307;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002; false&#x306E;&#x5834;&#x5408;&#x3001;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30AF;&#x30E9;&#x30B9;&#x304C;&#x30ED;&#x30FC;&#x30C9;&#x3055;&#x308C;&#x308B;&#x3068;&#x304D;&#x306B;Instrumentation&#x304C;&#x8FFD;&#x52A0;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002; </td>
+</tr><tr><td style="text-align:left"> samplethreads={true, false} </td>
+<td style="text-align:left"> true </td>
+<td style="text-align:left"> &#x30B9;&#x30EC;&#x30C3;&#x30C9;&#x30B5;&#x30F3;&#x30D7;&#x30EA;&#x30F3;&#x30B0;&#x306E;&#x53D6;&#x5F97;&#x306E;&#x6709;&#x7121;&#x306E;&#x6307;&#x5B9A; </td>
+</tr><tr><td style="text-align:left"> stackdepth=depth </td>
+<td style="text-align:left"> 64 </td>
+<td style="text-align:left"> &#x30B5;&#x30F3;&#x30D7;&#x30EA;&#x30F3;&#x30B0;&#x3059;&#x308B;&#x7D20;&#x5B85;&#x30C8;&#x30EC;&#x30FC;&#x30B9;&#x306E;&#x6DF1;&#x3055;&#x3092;&#x6307;&#x5B9A;&#x3002;&#x6700;&#x5927;&#x30B5;&#x30A4;&#x30BA;&#x306F;2048&#x3002;64&#x3088;&#x308A;&#x5927;&#x304D;&#x306A;&#x5024;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;&#x3068;&#x30AA;&#x30FC;&#x30D0;&#x30FC;&#x30D8;&#x30C3;&#x30C9;&#x304C;&#x975E;&#x5E38;&#x306B;&#x5927;&#x304D;&#x3044; </td>
+</tr><tr><td style="text-align:left"> allow_threadbuffers_to_disk={true, false} </td>
+<td style="text-align:left"> false </td>
+<td style="text-align:left"> &#x30D0;&#x30C3;&#x30D5;&#x30A1;&#x30B9;&#x30EC;&#x30C3;&#x30C9;&#x304C;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x3055;&#x308C;&#x305F;&#x5834;&#x5408;&#x306B;&#x3001;&#x30D0;&#x30C3;&#x30D5;&#x30A1;&#x30B9;&#x30EC;&#x30C3;&#x30C9;&#x3092;&#x76F4;&#x63A5;&#x30C7;&#x30A3;&#x30B9;&#x30AF;&#x306B;&#x66F8;&#x304F;&#x304B;&#x3092;&#x6307;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002;</td>
+</tr></tbody></table>
+
+<h2 id="&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x4E0A;&#x304B;&#x3089;&#x8A18;&#x9332;&#x3059;&#x308B;">&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x4E0A;&#x304B;&#x3089;&#x8A18;&#x9332;&#x3059;&#x308B;</h2><p>JFR API&#x3092;&#x4F7F;&#x3046;&#x4E8B;&#x3067;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x4E0A;&#x304B;&#x3089;JFR&#x3092;&#x8A18;&#x9332;&#x3059;&#x308B;&#x3053;&#x3068;&#x3082;&#x53EF;&#x80FD;&#x3067;&#x3059;&#x3002;</p><pre><code class="lang-java">var jfrConfig = jdk.jfr.Configuration.getConfiguration(<span class="hljs-string">&quot;default&quot;</span>);
+var path = Path.of(<span class="hljs-string">&quot;/tmp/myrecording.jfr&quot;</span>);
+<span class="hljs-keyword">try</span> (var recording = <span class="hljs-keyword">new</span> jdk.jfr.Recording(jfrConfig)) {
+    recording.setName(<span class="hljs-string">&quot;Hello JFR&quot;</span>);
+    recording.start();
+
+    <span class="hljs-comment">// - &#x3053;&#x3053;&#x306B;&#x4F55;&#x304B;&#x51E6;&#x7406;&#x3092;&#x5165;&#x308C;&#x308B; -</span>
+
+    recording.stop();
+    recording.dump(path);
+}</code></pre>
+<p>&#x901A;&#x5E38;&#x306F;&#x5229;&#x7528;&#x3059;&#x308B;&#x3053;&#x3068;&#x306F;&#x5C11;&#x306A;&#x3044;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x304C;&#x3001;&#x30DE;&#x30A4;&#x30AF;&#x30ED;&#x30D9;&#x30F3;&#x30C1;&#x30DE;&#x30FC;&#x30AF;&#x306E;&#x5024;&#x3092;JFR&#x306B;&#x8A18;&#x9332;&#x3057;&#x305F;&#x3044;&#x5834;&#x5408;&#x7B49;&#x306B;&#x306F;&#x4FBF;&#x5229;&#x3067;&#x3059;&#x3002;</p>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"3.1 JDK Flight Recorderの記録","level":"1.5.1","depth":2,"previous":{"title":"3章　JDK Flight Recorderの記録","level":"1.5","depth":1,"ref":"","articles":[{"title":"3.1 JDK Flight Recorderの記録","level":"1.5.1","depth":2,"path":"03/01-recording-jfr.md","ref":"03/01-recording-jfr.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"入門: JDK Flight Recoder","gitbook":"*"},"file":{"path":"03/01-recording-jfr.md","mtime":"2020-01-20T08:09:20.196Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2020-01-20T08:09:38.512Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
