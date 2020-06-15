@@ -261,6 +261,38 @@
             
         </li>
     
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    6章　Flight Record API
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="06/01-what_is_JFR_api.html">
+            
+                <a href="06/01-what_is_JFR_api.html">
+            
+                    
+                    6.1 Flight Recorder APIとは？
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
     
 
@@ -338,15 +370,19 @@
 </li>
 <li>5.x &#x30EA;&#x30DD;&#x30B8;&#x30C8;&#x30EA;&#x304B;&#x3089;&#x6BCE;&#x6642;/&#x65E5;&#x6B21;&#x306E;&#x30ED;&#x30B0;&#x3092;&#x4F5C;&#x308B;
 </li></ul>
-<h2 id="6&#x7AE0;&#x3000;jdk-flight-record-api">6&#x7AE0;&#x3000;JDK Flight Record API</h2><ul><li>6.1 &#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30A4;&#x30D9;&#x30F3;&#x30C8;
+<h2 id="6&#x7AE0;-flight-record-api">6&#x7AE0; Flight Record API</h2><ul><li><a href="06/01-what_is_JFR_api.html">6.1 Flight Recorder API&#x3068;&#x306F;&#xFF1F;</a>
 </li>
-<li>6.2 JFR&#x306E;&#x30B3;&#x30F3;&#x30C8;&#x30ED;&#x30FC;&#x30EB;
+<li>6.2 &#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30A4;&#x30D9;&#x30F3;&#x30C8;
 </li>
-<li>6.3 JFR Consuming API
+<li>6.3 JFR&#x306E;&#x30B3;&#x30F3;&#x30C8;&#x30ED;&#x30FC;&#x30EB;
 </li>
-<li>6.4 &#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306B;&#x308B;SQL&#x306E;&#x30ED;&#x30AE;&#x30F3;&#x30B0;
+<li>6.4 JFR Consuming API
 </li>
-<li>6.x JFR&#x3068;OpenTracing&#x306E;&#x9023;&#x643A;
+<li>6.5 JFR Event Streaming API
+</li>
+<li>6.6 &#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306B;&#x308B;SQL&#x306E;&#x30ED;&#x30AE;&#x30F3;&#x30B0;
+</li>
+<li>6.7 JFR&#x3068;OpenTracing&#x306E;&#x9023;&#x643A;
 </li></ul>
 <h2 id="7&#x7AE0;&#x3000;&#x30E2;&#x30CB;&#x30BF;&#x30EA;&#x30F3;&#x30B0;&#x3078;&#x306E;&#x5FDC;&#x7528;">7&#x7AE0;&#x3000;&#x30E2;&#x30CB;&#x30BF;&#x30EA;&#x30F3;&#x30B0;&#x3078;&#x306E;&#x5FDC;&#x7528;</h2><ul><li>7.1 JFR&#x306E;&#x30E2;&#x30CB;&#x30BF;&#x30EA;&#x30F3;&#x30B0;&#x3078;&#x306E;&#x8AB2;&#x984C;
 </li>
@@ -401,7 +437,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"目次","level":"1.1","depth":1,"next":{"title":"はじめに","level":"1.2","depth":1,"path":"preface.md","ref":"preface.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"入門: JDK Flight Recoder","gitbook":"*"},"file":{"path":"README.md","mtime":"2020-01-20T08:09:20.196Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2020-01-20T08:09:38.512Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"目次","level":"1.1","depth":1,"next":{"title":"はじめに","level":"1.2","depth":1,"path":"preface.md","ref":"preface.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"入門: JDK Flight Recoder","gitbook":"*"},"file":{"path":"README.md","mtime":"2020-06-15T23:27:20.237Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2020-06-15T23:27:38.229Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
