@@ -1,0 +1,478 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>6.2 カスタムイベント · 入門: JDK Flight Recoder</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="01-what_is_JFR_api.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    目次
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../preface.html">
+            
+                <a href="../preface.html">
+            
+                    
+                    はじめに
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    1章　JDK Flight Recoder とは？
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../01/01-what_is_JFR.html">
+            
+                <a href="../01/01-what_is_JFR.html">
+            
+                    
+                    1.1 JDK Flight Recorder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../01/02-other_tools.html">
+            
+                <a href="../01/02-other_tools.html">
+            
+                    
+                    1.2 Javaにおけるパフォーマンス分析と障害診断
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../01/03-history_of_jfr.html">
+            
+                <a href="../01/03-history_of_jfr.html">
+            
+                    
+                    1.3 JFRの歴史 - JRockitからOpenJDKまで
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../01/04-install_jmc.html">
+            
+                <a href="../01/04-install_jmc.html">
+            
+                    
+                    1.4 JFRの動作環境とJMCのインストール
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    2章　JDK Flight Recorderのアーキテクチャ
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../02/01-jfr-architecture.html">
+            
+                <a href="../02/01-jfr-architecture.html">
+            
+                    
+                    2.1 JFRのアーキテクチャ概要
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" >
+            
+                <span>
+            
+                    
+                    2.2 JFRとオーバーヘッド
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    3章　JDK Flight Recorderの記録
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../03/01-recording-jfr.html">
+            
+                <a href="../03/01-recording-jfr.html">
+            
+                    
+                    3.1 JDK Flight Recorderの記録
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    6章　Flight Record API
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="01-what_is_JFR_api.html">
+            
+                <a href="01-what_is_JFR_api.html">
+            
+                    
+                    6.1 Flight Recorder APIとは？
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6.2" data-path="02-custom_event.html">
+            
+                <a href="02-custom_event.html">
+            
+                    
+                    6.2 カスタムイベント
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >6.2 カスタムイベント</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30A4;&#x30D9;&#x30F3;&#x30C8;">&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30A4;&#x30D9;&#x30F3;&#x30C8;</h1><h2 id="&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3068;&#x306F;&#xFF1F;">&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3068;&#x306F;&#xFF1F;</h2><p>JFR&#x306F;2&#x7AE0;&#x3067;&#x8AAC;&#x660E;&#x3057;&#x305F;&#x3088;&#x3046;&#x306B;JVM/OS&#x306E;&#x5024;&#x3084;Java&#x6A19;&#x6E96;API&#x306E;&#x3044;&#x304F;&#x3064;&#x304B;&#x306E;&#x5024;&#x306F;&#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#x3067;&#x53D6;&#x5F97;&#x3057;&#x307E;&#x3059;&#x3002;
+&#x3057;&#x304B;&#x3057;&#x3001;&#x5B9F;&#x969B;&#x306B;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x8A3A;&#x65AD;&#x3092;&#x52B9;&#x679C;&#x7684;&#x306B;&#x3084;&#x308D;&#x3046;&#x3068;&#x3059;&#x308B;&#x3068;&#x305D;&#x308C;&#x3060;&#x3051;&#x3067;&#x306F;&#x8DB3;&#x3089;&#x305A;&#x3001;&#x30DF;&#x30C9;&#x30EB;&#x30A6;&#x30A7;&#x30A2;&#x3084;&#x81EA;&#x5206;&#x305F;&#x3061;&#x3067;&#x66F8;&#x3044;&#x3066;&#x3044;&#x308B;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x5024;&#x81EA;&#x8EAB;&#x3082;&#x53D6;&#x5F97;&#x3057;&#x305F;&#x304F;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p><p>&#x305D;&#x308C;&#x3092;&#x5B9F;&#x73FE;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x304C;&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3067;&#x3059;&#x3002;JDK8&#x307E;&#x3067;&#x306F;&#x975E;&#x516C;&#x5F0F;API&#x3067;&#x3057;&#x305F;&#x304C;&#x3001;JDK9&#x304B;&#x3089;&#x5C0E;&#x5165;&#x3055;&#x308C;&#x305F;Flight Recorder API&#x306B;&#x3088;&#x308A;&#x73FE;&#x5728;&#x306F;&#x516C;&#x5F0F;&#x306A;API&#x3068;&#x3057;&#x3066;&#x5229;&#x7528;&#x53EF;&#x80FD;&#x3067;&#x3059;&#x3002;</p><p>&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306B;&#x95A2;&#x3057;&#x3066;&#x306F;&#x4EE5;&#x4E0B;&#x306E;&#x30C9;&#x30AD;&#x30E5;&#x30E1;&#x30F3;&#x30C8;&#x306B;&#x307E;&#x3068;&#x307E;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
+<a href="https://docs.oracle.com/javase/jp/14/jfapi/create-events.html" target="_blank">Flight Recorder API&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DE;&#x30FC;&#x30BA;&#x30FB;&#x30AC;&#x30A4;&#x30C9;: &#x7B2C;II&#x90E8; &#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306E;&#x4F5C;&#x6210;</a></p><p>&#x3053;&#x308C;&#x306B;&#x3088;&#x308A;Web&#x306E;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x3084;SQL&#x306E;&#x60C5;&#x5831;&#x3092;&#x8A18;&#x9332;&#x3057;&#x305F;&#x308A;&#x3001;&#x81EA;&#x4F5C;&#x306E;&#x5171;&#x901A;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306A;&#x3069;&#x3092;&#x30D5;&#x30C3;&#x30AF;&#x3057;&#x3066;&#x60C5;&#x5831;&#x3092;&#x8A73;&#x7D30;&#x306B;&#x53D6;&#x5F97;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x53EF;&#x80FD;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p><h2 id="&#x7C21;&#x5358;&#x306A;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x307F;&#x308B;">&#x7C21;&#x5358;&#x306A;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x307F;&#x308B;</h2><p>&#x3068;&#x308A;&#x3042;&#x3048;&#x305A;&#x306F;&#x66F8;&#x3044;&#x3066;&#x307F;&#x308B;&#x306E;&#x304C;&#x4E00;&#x756A;&#x306A;&#x306E;&#x3067;&#x3001;&#x307E;&#x305A;&#x7C21;&#x5358;&#x306A;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;
+&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306F;<code>jdk.jfr.Event</code>&#x3092;&#x7D99;&#x627F;&#x3059;&#x308B;&#x4E8B;&#x3067;&#x7C21;&#x5358;&#x306B;&#x4F5C;&#x6210;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p><pre><code class="lang-java"><span class="hljs-keyword">import</span> jdk.jfr.Event;
+<span class="hljs-keyword">import</span> jdk.jfr.Label;
+<span class="hljs-keyword">import</span> jdk.jfr.Name;
+
+<span class="hljs-meta">@Name</span>(<span class="hljs-string">&quot;dev.nklab.myapp.Hello&quot;</span>)
+<span class="hljs-meta">@Label</span>(<span class="hljs-string">&quot;Hello World!&quot;</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hello</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Event</span> </span>{
+
+    <span class="hljs-meta">@Label</span>(<span class="hljs-string">&quot;Message&quot;</span>)
+    <span class="hljs-keyword">public</span> String msg;
+}</code></pre>
+<p>&#x4F7F;&#x3046;&#x6642;&#x306F;&#x4EE5;&#x4E0B;&#x306E;&#x3088;&#x3046;&#x306B;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x521D;&#x671F;&#x5316;&#x3057;&#x3066;<code>begin</code>&#x3068;<code>commit</code>&#x3067;&#x8A08;&#x6E2C;&#x3057;&#x305F;&#x3044;&#x9593;&#x306E;&#x51E6;&#x7406;&#x3092;&#x631F;&#x307F;&#x307E;&#x3059;&#x3002;</p><pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] arg)</span> </span>{
+        var event = <span class="hljs-keyword">new</span> HelloEvent();
+        event.begin();
+        System.out.println(<span class="hljs-string">&quot;Hello JFR&quot;</span>);
+        event.msg = <span class="hljs-string">&quot;Hello world!&quot;</span>;
+        event.commit();
+    }
+}</code></pre>
+<p>&#x3067;&#x306F;&#x5B9F;&#x884C;&#x3057;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;JFR&#x3092;&#x51FA;&#x529B;&#x3057;&#x305F;&#x3044;&#x306E;&#x3067;<code>-XX:StartFlightRecording:</code>&#x3092;&#x3064;&#x3051;&#x307E;&#x3059;&#x3002;&#x3061;&#x306A;&#x307F;&#x306B;&#x3064;&#x3051;&#x305A;&#x306B;&#x5B9F;&#x884C;&#x3057;&#x3066;&#x3082;&#x554F;&#x984C;&#x306A;&#x304F;&#x52D5;&#x4F5C;&#x3057;&#x307E;&#x3059;&#x304C;JFR&#x306F;&#x751F;&#x6210;&#x3055;&#x308C;&#x307E;&#x305B;&#x3093;&#x3002;</p><pre><code class="lang-bash">$ java -XX:StartFlightRecording:filename=profile.jfr -cp . chapter06.Main
+Started recording 1. No <span class="hljs-built_in">limit</span> specified, using maxsize=250MB as default.
+
+Use jcmd 8416 JFR.dump name=1 to copy recording data to file.
+Hello JFR</code></pre>
+<p><code>profile.jfr</code>&#x3068;&#x3044;&#x3046;&#x5F62;&#x3067;JFR&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x304C;&#x30C0;&#x30F3;&#x30D7;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x306E;&#x3067;jfr&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3067;&#x4E2D;&#x8EAB;&#x3092;&#x78BA;&#x8A8D;&#x3057;&#x3066;&#x307F;&#x307E;&#x3059;&#x3002;&#x3059;&#x3079;&#x3066;&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x51FA;&#x529B;&#x3059;&#x308B;&#x3068;&#x91CF;&#x304C;&#x591A;&#x3044;&#x306E;&#x3067;Hello&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3067;&#x30D5;&#x30A3;&#x30EB;&#x30BF;&#x30EA;&#x30F3;&#x30B0;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p><pre><code class="lang-bash">$ jfr <span class="hljs-built_in">print</span> --events Hello profile.jfr
+dev.nklab.myapp.Hello {
+  startTime = 00:07:01.010
+  duration = 0.414 ms
+  msg = <span class="hljs-string">&quot;Hello world!&quot;</span>
+  eventThread = <span class="hljs-string">&quot;main&quot;</span> (javaThreadId = 1)
+  stackTrace = [
+    chapter06.Main.main(String[]) line: 19
+  ]
+}</code></pre>
+<p><code>startTime</code>&#x3068;<code>duration</code>&#x304C;&#x81EA;&#x52D5;&#x3067;&#x767B;&#x9332;&#x3055;&#x308C;&#x307E;&#x3057;&#x305F;&#x3002;&#x3053;&#x308C;&#x306F;<code>begin</code>&#x3068;<code>commit</code>&#x306E;&#x90E8;&#x5206;&#x3092;&#x8A08;&#x6E2C;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;<code>msg</code>&#x306F;<code>Hello</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306B;&#x5B9A;&#x7FA9;&#x3057;&#x305F;&#x30D5;&#x30A3;&#x30FC;&#x30EB;&#x30C9;&#x3067;&#x3059;&#x3002;&#x3053;&#x3061;&#x3089;&#x3092;JFR&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3068;&#x3057;&#x3066;&#x4EFB;&#x610F;&#x306E;&#x5024;&#x3092;&#x683C;&#x7D0D;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x51FA;&#x6765;&#x307E;&#x3059;&#x3002;</p><p>&#x307E;&#x305F;&#x3001;&#x3053;&#x3053;&#x3067;&#x8868;&#x793A;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30BF;&#x30A4;&#x30D7;&#x306F;&#x5B9F;&#x969B;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x5B8C;&#x5168;&#x4FEE;&#x98FE;&#x30AF;&#x30E9;&#x30B9;&#x540D;&#x3067;&#x306F;&#x306A;&#x304F;<code>@Name</code>&#x3067;&#x6307;&#x5B9A;&#x3057;&#x305F;&#x5024;&#x3067;&#x4E0A;&#x66F8;&#x304D;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002; JFR&#x306E;&#x300C;<a href="https://docs.oracle.com/javase/jp/14/jfapi/guidelines-naming-and-labeling-events.html" target="_blank">&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306E;&#x30CD;&#x30FC;&#x30DF;&#x30F3;&#x30B0;&#x304A;&#x3088;&#x3073;&#x30E9;&#x30D9;&#x30EB;&#x4ED8;&#x3051;&#x306E;&#x30AC;&#x30A4;&#x30C9;&#x30E9;&#x30A4;&#x30F3;</a>&#x300D;&#x3067;&#x306F;&#x3001;<code>@Name</code>&#x3092;&#x672C;&#x756A;&#x3067;&#x306F;&#x7701;&#x7565;&#x3059;&#x308B;&#x3079;&#x304D;&#x3067;&#x306F;&#x306A;&#x3044;&#x3068;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p><p>&#x305D;&#x308C;&#x306F;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x540D;&#x3067;&#x306F;<strong>&#x610F;&#x5473;&#x304C;&#x91CD;&#x8907;&#x3059;&#x308B;&#x306E;&#x3067;&#x300C;event&#x300D;&#x300C;Event&#x300D;&#x306E;&#x3088;&#x3046;&#x306A;&#x540D;&#x524D;&#x3092;&#x4ED8;&#x3051;&#x306A;&#x3044;</strong>&#x3068;&#x3044;&#x3046;&#x4E8B;&#x304C;&#x63A8;&#x5968;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x306E;&#x3067;&#x3059;&#x304C;&#x3001;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x540D;&#x3084;&#x5B9F;&#x969B;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x540D;&#x306B;&#x306F;&#x5206;&#x985E;&#x306E;&#x305F;&#x3081;&#x306B;&#x305D;&#x308C;&#x304C;&#x767B;&#x5834;&#x3059;&#x308B;&#x53EF;&#x80FD;&#x6027;&#x304C;&#x9AD8;&#x3044;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;&#x30EA;&#x30D5;&#x30A1;&#x30AF;&#x30BF;&#x30EA;&#x30F3;&#x30B0;&#x7B49;&#x3067;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x540D;&#x7B49;&#x304C;&#x5909;&#x308F;&#x3063;&#x3066;&#x3082;&#x7D99;&#x7D9A;&#x3057;&#x3066;&#x65E2;&#x5B58;&#x306E;&#x540D;&#x524D;&#x3067;JFR&#x5074;&#x3067;&#x306F;&#x89E3;&#x6790;&#x3067;&#x304D;&#x308B;&#x3068;&#x3044;&#x3046;&#x70B9;&#x3082;&#x91CD;&#x8981;&#x3067;&#x3059;&#x3002;</p><p>&#x7D9A;&#x3044;&#x3066;&#x540C;&#x3058;JFR&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;JCM&#x3067;&#x958B;&#x3044;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p><p><img alt="" src="../images/06-02-hw_jmc.png"></p><p>EventBrowser&#x304B;&#x3089;&#x540C;&#x3058;&#x304F;<code>Hello</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x304C;&#x78BA;&#x8A8D;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p><p>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30BF;&#x30A4;&#x30D7;&#x304C;<code>dev.nklab.myapp.Hello</code>&#x3067;&#x306F;&#x306A;&#x304F;<code>Hello World!</code>&#x3067;&#x3042;&#x308B;&#x3053;&#x3068;&#x3001;&#x30AB;&#x30E9;&#x30E0;&#x540D;&#x304C;<code>msg</code>&#x3067;&#x306F;&#x306A;&#x304F;<code>Message</code>&#x306A;&#x4E8B;&#x306B;&#x6CE8;&#x76EE;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;&#x3053;&#x308C;&#x306F;<code>@Label</code>&#x306B;&#x3088;&#x3063;&#x3066;&#x5B9F;&#x969B;&#x306E;&#x8868;&#x793A;&#x3092;&#x4E0A;&#x66F8;&#x304D;&#x3057;&#x3066;&#x3044;&#x308B;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;</p><p>&#x307E;&#x305F;&#x3001;&#x4ECA;&#x56DE;&#x306F;&#x7279;&#x306B;&#x6307;&#x5B9A;&#x3057;&#x3066;&#x3044;&#x306A;&#x3044;&#x306E;&#x3067;&#x30AB;&#x30C6;&#x30B4;&#x30EA;&#x304C;&#x300C; <strong>Uncategorized</strong> &#x300D;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;&#x3053;&#x308C;&#x306F;&#x898B;&#x6804;&#x3048;&#x306E;&#x70B9;&#x3067;&#x3082;&#x691C;&#x7D22;&#x6027;&#x306E;&#x70B9;&#x3067;&#x3082;&#x826F;&#x304F;&#x306A;&#x3044;&#x306E;&#x3067;<code>@Cateogry</code>&#x3092;&#x4F7F;&#x3044;&#x30AB;&#x30C6;&#x30B4;&#x30EA;&#x3092;&#x6307;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002;</p><pre><code class="lang-java"><span class="hljs-meta">@Category</span>(<span class="hljs-string">&quot;MyApp&quot;</span>)
+<span class="hljs-meta">@Name</span>(<span class="hljs-string">&quot;dev.nklab.myapp.Hello&quot;</span>)
+<span class="hljs-meta">@Label</span>(<span class="hljs-string">&quot;Hello World!&quot;</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloEvent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Event</span> </span>{
+    <span class="hljs-meta">@Label</span>(<span class="hljs-string">&quot;Message&quot;</span>)
+    <span class="hljs-keyword">public</span> String msg;
+}</code></pre>
+<p><img alt="" src="../images/06-02-hw_jmc2.png"></p><p><code>MyApp</code>&#x3067;&#x30AB;&#x30C6;&#x30B4;&#x30E9;&#x30A4;&#x30BA;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x306D;&#x3002;&#x3053;&#x308C;&#x3067;&#x4EFB;&#x610F;&#x306E;&#x30AB;&#x30C6;&#x30B4;&#x30EA;&#x306B;&#x5206;&#x985E;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;&#x4EE5;&#x4E0B;&#x306E;&#x3088;&#x3046;&#x306B;&#x30AB;&#x30C6;&#x30B4;&#x30EA;&#x3092;&#x968E;&#x5C64;&#x5316;&#x3059;&#x308B;&#x4E8B;&#x3082;&#x51FA;&#x6765;&#x307E;&#x3059;&#x3002;</p><pre><code class="lang-java"><span class="hljs-meta">@Category</span>({<span class="hljs-string">&quot;My App&quot;</span>, <span class="hljs-string">&quot;Frontend&quot;</span>, <span class="hljs-string">&quot;Business Logic1&quot;</span>})
+<span class="hljs-meta">@Name</span>(<span class="hljs-string">&quot;dev.nklab.myapp.Hello&quot;</span>)
+<span class="hljs-meta">@Label</span>(<span class="hljs-string">&quot;Hello World!&quot;</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloEvent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Event</span> </span>{</code></pre>
+<p><img alt="" src="../images/06-02-hw_jmc3.png"></p>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="01-what_is_JFR_api.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 6.1 Flight Recorder APIとは？">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"6.2 カスタムイベント","level":"1.6.2","depth":2,"previous":{"title":"6.1 Flight Recorder APIとは？","level":"1.6.1","depth":2,"path":"06/01-what_is_JFR_api.md","ref":"06/01-what_is_JFR_api.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"入門: JDK Flight Recoder","gitbook":"*"},"file":{"path":"06/02-custom_event.md","mtime":"2020-11-07T08:43:10.973Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2020-11-07T08:43:27.740Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
